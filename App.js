@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Details from "./screens/Details";
+import Favoris from "./screens/Favoris";
 import Home from "./screens/Home";
 
 const Stack = createStackNavigator();
@@ -18,15 +18,17 @@ export default function App() {
             let iconName;
             if (route.name === "Home") {
               iconName = "home";
-            } else if (route.name === "Details") {
-              iconName = "list";
+            } else if (route.name === "Favoris") {
+              iconName = "heart";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
+          tabBarActiveTintColor: "tomato",
+          tabBarInactiveTintColor: "gray",
         })}
       >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Details" component={Details} />
+        <Tab.Screen name="Favoris" component={Favoris} />
       </Tab.Navigator>
     </NavigationContainer>
   );
