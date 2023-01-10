@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Favoris from "./screens/Favoris";
 import Home from "./screens/Home";
+import Maps from "./screens/Maps";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,7 +20,9 @@ export default function App() {
             if (route.name === "Home") {
               iconName = "home";
             } else if (route.name === "Favoris") {
-              iconName = "heart";
+              iconName = "star";
+            } else if (route.name === "Maps") {
+              iconName = "location";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -27,8 +30,9 @@ export default function App() {
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Favoris" component={Favoris} />
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Maps" component={Maps} />
       </Tab.Navigator>
     </NavigationContainer>
   );
