@@ -1,27 +1,13 @@
-import { useState } from "react";
+import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import ReactNativeCalendarStrip from "react-native-calendar-strip";
 
 export default function Home({ navigation }) {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  return (
-    <View>
-      <ReactNativeCalendarStrip
-        startingDate={new Date()}
-        selectedDate={selectedDate}
-        onDateSelected={(date) => setSelectedDate(date)}
-      />
-    </View>
-  );
+  return <View style={{ flex: 1 }}></View>;
 }
 
 const styles = StyleSheet.create({
   weekCalendarWrapper: {
     flex: 1,
     alignItems: "center",
-  },
-  weekCalendar: {
-    width: document.body.clientWidth,
   },
 });
