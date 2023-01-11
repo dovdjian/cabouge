@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   Image,
   Modal,
@@ -11,13 +11,15 @@ import { FlatList } from "react-native-gesture-handler";
 import { api, windowWidth } from "../const";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { FavoriteIcon } from "../assets/star.png";
+import { EventsContext } from "../contexts/EventsContext";
 
 export default function Events({ navigation }) {
-  const [events, setEvents] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [eventInfos, setEventInfos] = useState({});
   const [eventIndex, setEventIndex] = useState(0);
   const flatListRef = useRef(null);
+  const { events, setEvents, favorites, setFavorites } =
+    useContext(EventsContext);
 
   const loadList = async () => {
     await api
@@ -48,6 +50,13 @@ export default function Events({ navigation }) {
 
   const addEventToFavorites = (item) => {
     console.log(item);
+    const index = favorites.findIndex((favorite) => favorite.id === item.id);
+    if (index === -1) {
+      setFavorites([...favorites, item]);
+    } else {
+      favorites.splice(index, 1);
+      setFavorites([...favorites]);
+    }
   };
 
   useEffect(() => {
@@ -55,6 +64,12 @@ export default function Events({ navigation }) {
       handleReturn(eventIndex);
     }
   }, [flatListRef, eventIndex, handleReturn]);
+
+  // store favorite in localStorage
+  useEffect(() => {
+    console.log(favorites);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -95,6 +110,7 @@ export default function Events({ navigation }) {
               />
               <TouchableOpacity
                 onPress={() => addEventToFavorites(item)}
+                activeOpacity={1}
                 style={styles.iconContainer}
               >
                 <Ionicons name="star-outline" size={30} color="white" />
