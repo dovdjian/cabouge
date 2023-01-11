@@ -43,7 +43,6 @@ export default function Events({ navigation }) {
       flatListRef.current.scrollToIndex({
         index,
         animated: false,
-        viewPosition: -0.5,
       });
     setModalVisible(false);
   };
@@ -59,6 +58,14 @@ export default function Events({ navigation }) {
     }
   };
 
+  const isFavorite = (item) => {
+    const index = favorites.findIndex((favorite) => favorite.id === item.id);
+    if (index === -1) {
+      return false;
+    }
+    return true;
+  };
+
   useEffect(() => {
     if (flatListRef.current && eventIndex) {
       handleReturn(eventIndex);
@@ -66,10 +73,10 @@ export default function Events({ navigation }) {
   }, [flatListRef, eventIndex, handleReturn]);
 
   // store favorite in localStorage
-  useEffect(() => {
+  /* useEffect(() => {
     console.log(favorites);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+  }, [favorites]); */
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -113,7 +120,11 @@ export default function Events({ navigation }) {
                 activeOpacity={1}
                 style={styles.iconContainer}
               >
-                <Ionicons name="star-outline" size={30} color="white" />
+                {isFavorite(item) ? (
+                  <Ionicons name="star" size={30} color="white" />
+                ) : (
+                  <Ionicons name="star-outline" size={30} color="white" />
+                )}
               </TouchableOpacity>
             </TouchableOpacity>
           )}
@@ -136,9 +147,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 10,
     left: 10,
-    border: "1px solid rgba(0,0,0,0.5)",
-    borderRadius: 50,
-    backgroundColor: "rgba(0,0,0,0.5)",
   },
   icon: {
     fontSize: 30,

@@ -2,18 +2,50 @@ import { useContext, useEffect } from "react";
 import { FlatList, Image, Text, View } from "react-native";
 import { windowWidth } from "../const";
 import { EventsContext } from "../contexts/EventsContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Favoris({ navigation }) {
   const { favorites, setFavorites } = useContext(EventsContext);
 
   // get favorite from localStorage
-  useEffect(() => {
+  /* useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites"));
 
     console.log(favorites);
     if (favorites) {
       setFavorites(favorites);
     }
+  }, []); */
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("@favorites", jsonValue);
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@storage_Key");
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  useEffect(() => {
+    storeData(favorites);
+  }, [favorites]);
+
+  useEffect(() => {
+    getData().then((data) => {
+      if (data) {
+        console.log("data == ", data);
+        setFavorites(data);
+      }
+    });
   }, []);
 
   return (
