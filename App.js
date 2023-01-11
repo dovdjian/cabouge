@@ -18,11 +18,11 @@ export default function App() {
           tabBarIcon: ({ color, size }) => {
             let iconName;
             if (route.name === "Home") {
-              iconName = "home";
+              iconName = "home-outline";
             } else if (route.name === "Favoris") {
-              iconName = "star";
+              iconName = "star-outline";
             } else if (route.name === "Maps") {
-              iconName = "location";
+              iconName = "location-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
