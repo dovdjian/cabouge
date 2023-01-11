@@ -41,7 +41,7 @@ export default function Events({ navigation }) {
     const index = events.findIndex((item) => item.id === id);
     if (flatListRef.current)
       flatListRef.current.scrollToIndex({
-        index,
+        index: index,
         animated: false,
       });
     setModalVisible(false);
@@ -98,6 +98,8 @@ export default function Events({ navigation }) {
       </Modal>
       {!modalVisible && (
         <FlatList
+          horizontal={true}
+          style={styles.eventsList}
           ref={flatListRef}
           getItemLayout={(data, index) => ({
             length: 200,
@@ -140,16 +142,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageInModal: {
-    width: windowWidth,
+    width: 200,
     height: 200,
+    borderRadius: 100,
+    position: "relative",
   },
-  iconContainer: {
-    position: "absolute",
-    bottom: 10,
-    left: 10,
-  },
+  iconContainer: {},
   icon: {
     fontSize: 30,
     color: "white",
   },
+  eventsList: {},
 });
