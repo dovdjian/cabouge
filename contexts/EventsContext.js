@@ -17,6 +17,7 @@ export const EventsProvider = ({ children }) => {
     "Bars",
     "Autre",
   ]);
+  const [date, setDate] = useState(new Date());
 
   return (
     <EventsContext.Provider
@@ -27,6 +28,8 @@ export const EventsProvider = ({ children }) => {
         setFavorites,
         filtres,
         setFiltres,
+        date,
+        setDate,
       }}
     >
       {children}

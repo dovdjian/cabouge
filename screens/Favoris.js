@@ -1,8 +1,9 @@
 import { useContext, useEffect } from "react";
-import { FlatList, Image, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { windowWidth } from "../const";
 import { EventsContext } from "../contexts/EventsContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FlatList } from "react-native-gesture-handler";
 
 export default function Favoris({ navigation }) {
   const { favorites, setFavorites } = useContext(EventsContext);
