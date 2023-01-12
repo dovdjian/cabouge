@@ -25,7 +25,9 @@ export default function Filtres() {
 }
 
 const styles = StyleSheet.create({
-  filtres: {},
+  filtres: {
+    marginLeft: 10,
+  },
   filtre: {
     borderRadius: 100,
     marginRight: 10,

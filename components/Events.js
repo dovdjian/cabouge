@@ -216,7 +216,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "#8F8F8F",
   },
-  eventsList: {},
+  eventsList: {
+    marginLeft: 10,
+  },
   eventContainer: {
     alignItems: "center",
     width: 237,
