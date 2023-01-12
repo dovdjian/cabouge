@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {
   Image,
   Modal,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -18,7 +19,7 @@ export default function Events({ navigation }) {
   const [eventInfos, setEventInfos] = useState({});
   const [eventIndex, setEventIndex] = useState(0);
   const flatListRef = useRef(null);
-  const { events, setEvents, favorites, setFavorites } =
+  const { events, setEvents, favorites, setFavorites, filtres, setFiltres } =
     useContext(EventsContext);
 
   const loadList = async () => {
@@ -70,6 +71,10 @@ export default function Events({ navigation }) {
     console.log(item);
   };
 
+  const redirectToWebsite = () => {
+    console.log("redirect");
+  };
+
   const renderItem = ({ item }) => {
     return (
       <View style={styles.eventContainer}>
@@ -81,30 +86,49 @@ export default function Events({ navigation }) {
             source={{ uri: item.download_url }}
             style={styles.imageInModal}
           />
-          <TouchableOpacity
-            style={styles.iconShare}
-            onPress={() => shareEvent(item)}
-          >
-            <Ionicons name="share-outline" size={32} color="white" />
-          </TouchableOpacity>
+        </TouchableOpacity>
 
-          <Text style={styles.status}> En cours</Text>
-          <Text style={styles.title}>{item.author}</Text>
-          <Text style={styles.description}>Description de l'event </Text>
-          <TouchableOpacity onPress={() => {}}>
-            <Text style={styles.button}>Website</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => addEventToFavorites(item)}
-            activeOpacity={1}
-            style={styles.iconFavorite}
-          >
-            {isFavorite(item) ? (
-              <Ionicons name="star" size={80} color="white" />
-            ) : (
-              <Ionicons name="star-outline" size={80} color="white" />
-            )}
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconShare}
+          onPress={() => shareEvent(item)}
+        >
+          <Ionicons name="share-outline" size={32} color="white" />
+        </TouchableOpacity>
+        <Text style={styles.status}> En cours</Text>
+        <Text style={styles.title}>{item.author}</Text>
+        <FlatList
+          nestedScrollEnabled={true}
+          style={styles.filtres}
+          showsHorizontalScrollIndicator={true} // TODO: false
+          alignItems="center"
+          horizontal={true}
+          data={filtres}
+          //keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.filtre}>
+              <Text style={styles.filtreText}>{item}</Text>
+            </View>
+          )}
+        />
+        <Text style={styles.description}>Description de l'event </Text>
+        <TouchableOpacity
+          style={styles.websiteButton}
+          onPress={() => {
+            redirectToWebsite();
+          }}
+        >
+          <Text>Website</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => addEventToFavorites(item)}
+          activeOpacity={1}
+          style={styles.iconFavorite}
+        >
+          {isFavorite(item) ? (
+            <Ionicons name="star" size={84} color="white" />
+          ) : (
+            <Ionicons name="star-outline" size={84} color="white" />
+          )}
         </TouchableOpacity>
       </View>
     );
@@ -142,6 +166,7 @@ export default function Events({ navigation }) {
       </Modal>
       {!modalVisible && (
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal={true}
           style={styles.eventsList}
           ref={flatListRef}
@@ -170,13 +195,14 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     position: "relative",
     top: 10,
+    alignSelf: "center",
   },
   iconFavorite: {
     position: "relative",
     alignSelf: "center",
-    top: 80,
     borderRadius: 100,
     backgroundColor: "#8F8F8F",
+    top: 24,
   },
   icon: {
     fontSize: 30,
@@ -185,7 +211,8 @@ const styles = StyleSheet.create({
   iconShare: {
     position: "relative",
     alignSelf: "flex-end",
-    bottom: 20,
+    bottom: 35,
+    right: 35,
     borderRadius: 100,
     backgroundColor: "#8F8F8F",
   },
@@ -211,10 +238,24 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
   },
-  button: {
+  websiteButton: {
     textAlign: "center",
     fontSize: 12,
-    backgroundColor: "8F8F8F",
+    backgroundColor: "#8F8F8F",
     borderRadius: 20,
+    paddingHorizontal: 30,
   },
+  filtres: {
+    flex: 1,
+    position: "relative",
+    gap: 8,
+  },
+  filtre: {
+    borderRadius: 28,
+    border: "1px solid #C9C9C9",
+    backgroundColor: "white",
+    alignSelf: "flex-start",
+    marginRight: 8,
+  },
+  filtreText: {},
 });

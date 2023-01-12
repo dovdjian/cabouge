@@ -6,6 +6,17 @@ export const EventsContext = createContext({});
 export const EventsProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [filtres, setFiltres] = useState([
+    "Sport",
+    "Concert",
+    "Festival",
+    "Exposition",
+    "Conférence",
+    "Théâtre",
+    "Cinéma",
+    "Bars",
+    "Autre",
+  ]);
 
   return (
     <EventsContext.Provider
@@ -14,6 +25,8 @@ export const EventsProvider = ({ children }) => {
         setEvents,
         favorites,
         setFavorites,
+        filtres,
+        setFiltres,
       }}
     >
       {children}
