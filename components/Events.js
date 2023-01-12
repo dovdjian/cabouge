@@ -248,16 +248,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   filtres: {
-    flex: 1,
-    position: "relative",
-    gap: 8,
+    marginLeft: 10,
   },
   filtre: {
-    borderRadius: 28,
-    border: "1px solid #C9C9C9",
-    backgroundColor: "white",
-    alignSelf: "flex-start",
-    marginRight: 8,
+    borderRadius: 100,
+    marginRight: 10,
+    backgroundColor: "#F2F2F2",
+    width: 57,
+    height: 13,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  filtreText: {},
+  filtreText: {
+    fontSize: 10,
+  },
 });

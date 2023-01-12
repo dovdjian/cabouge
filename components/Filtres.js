@@ -7,7 +7,7 @@ export default function Filtres() {
   const { filtres } = useContext(EventsContext);
 
   return (
-    <View style={styles.filtres}>
+    <View style={styles.container}>
       <FlatList
         //nestedScrollEnabled={true}
         showsHorizontalScrollIndicator={false} // TODO: false
@@ -15,8 +15,8 @@ export default function Filtres() {
         data={filtres}
         //keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.filtre}>
-            <Text style={styles.filtreText}>{item}</Text>
+          <View style={styles.item}>
+            <Text style={styles.itemText}>{item}</Text>
           </View>
         )}
       />
@@ -25,15 +25,19 @@ export default function Filtres() {
 }
 
 const styles = StyleSheet.create({
-  filtres: {
+  container: {
     marginLeft: 10,
   },
-  filtre: {
+  item: {
     borderRadius: 100,
     marginRight: 10,
     backgroundColor: "#F2F2F2",
-    border: "1px solid black",
-    paddingHorizontal: 5,
+    width: 109,
+    height: 41,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  filtreText: {},
+  itemText: {
+    fontSize: 20,
+  },
 });

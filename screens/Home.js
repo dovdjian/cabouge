@@ -18,9 +18,14 @@ export default function Home({ navigation }) {
 
   console.log(day);
   const handleConfirmDate = (day) => {
-    setConfirmDate(true);
+    setConfirmDate(false);
     setDisplayCalendar(false);
     setDay(day);
+  };
+
+  const handleCloseCalendar = () => {
+    setDisplayCalendar(false);
+    setConfirmDate(false);
   };
 
   return (
@@ -47,8 +52,10 @@ export default function Home({ navigation }) {
                   paddingHorizontal: 10,
                 }}
               >
-                <TouchableOpacity onPress={() => setDisplayCalendar(false)}>
-                  <Text>{date.toString().substring(4, 15)}</Text>
+                <TouchableOpacity onPress={() => handleCloseCalendar()}>
+                  <Text>
+                    {date.toString().substring(4, 7)} {date.getFullYear()}
+                  </Text>
                 </TouchableOpacity>
                 {confirmDate ? (
                   <TouchableOpacity onPress={() => handleConfirmDate(tempDay)}>
@@ -63,12 +70,13 @@ export default function Home({ navigation }) {
         />
       ) : (
         <TouchableOpacity
-          style={{ fontSize: 20, margin: 10 }}
+          style={{ fontSize: 20, margin: 10, flexDirection: "row" }}
           onPress={() => setDisplayCalendar(true)}
         >
           <Text style={{ fontSize: 20 }}>
             {day.day}/{day.month}/{day.year}
           </Text>
+          <Ionicons name="chevron-down-outline" size={24} style={{}} />
         </TouchableOpacity>
       )}
       <Events />
