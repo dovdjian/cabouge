@@ -66,6 +66,50 @@ export default function Events({ navigation }) {
     return true;
   };
 
+  const shareEvent = (item) => {
+    console.log(item);
+  };
+
+  const renderItem = ({ item }) => {
+    return (
+      <View style={styles.eventContainer}>
+        <TouchableOpacity
+          onPress={() => renderModal({ item })}
+          activeOpacity={1}
+        >
+          <Image
+            source={{ uri: item.download_url }}
+            style={styles.imageInModal}
+          />
+          <TouchableOpacity
+            style={styles.iconShare}
+            onPress={() => shareEvent(item)}
+          >
+            <Ionicons name="share-outline" size={32} color="white" />
+          </TouchableOpacity>
+
+          <Text style={styles.status}> En cours</Text>
+          <Text style={styles.title}>{item.author}</Text>
+          <Text style={styles.description}>Description de l'event </Text>
+          <TouchableOpacity onPress={() => {}}>
+            <Text style={styles.button}>Website</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => addEventToFavorites(item)}
+            activeOpacity={1}
+            style={styles.iconFavorite}
+          >
+            {isFavorite(item) ? (
+              <Ionicons name="star" size={80} color="white" />
+            ) : (
+              <Ionicons name="star-outline" size={80} color="white" />
+            )}
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   useEffect(() => {
     if (flatListRef.current && eventIndex) {
       handleReturn(eventIndex);
@@ -108,28 +152,7 @@ export default function Events({ navigation }) {
           })}
           data={events}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => renderModal({ item })}
-              activeOpacity={1}
-            >
-              <Image
-                source={{ uri: item.download_url }}
-                style={styles.imageInModal}
-              />
-              <TouchableOpacity
-                onPress={() => addEventToFavorites(item)}
-                activeOpacity={1}
-                style={styles.iconContainer}
-              >
-                {isFavorite(item) ? (
-                  <Ionicons name="star" size={30} color="white" />
-                ) : (
-                  <Ionicons name="star-outline" size={30} color="white" />
-                )}
-              </TouchableOpacity>
-            </TouchableOpacity>
-          )}
+          renderItem={renderItem}
         />
       )}
     </View>
@@ -146,11 +169,52 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
     position: "relative",
+    top: 10,
   },
-  iconContainer: {},
+  iconFavorite: {
+    position: "relative",
+    alignSelf: "center",
+    top: 80,
+    borderRadius: 100,
+    backgroundColor: "#8F8F8F",
+  },
   icon: {
     fontSize: 30,
     color: "white",
   },
+  iconShare: {
+    position: "relative",
+    alignSelf: "flex-end",
+    bottom: 20,
+    borderRadius: 100,
+    backgroundColor: "#8F8F8F",
+  },
   eventsList: {},
+  eventContainer: {
+    alignItems: "center",
+    width: 237,
+    height: 492,
+    borderRadius: 145,
+    backgroundColor: "#D9D9D9",
+    marginRight: 40,
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 20,
+  },
+  status: {
+    textAlign: "center",
+    fontSize: 20,
+    color: "green",
+  },
+  description: {
+    textAlign: "center",
+    fontSize: 12,
+  },
+  button: {
+    textAlign: "center",
+    fontSize: 12,
+    backgroundColor: "8F8F8F",
+    borderRadius: 20,
+  },
 });
