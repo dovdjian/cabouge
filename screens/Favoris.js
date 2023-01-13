@@ -4,20 +4,12 @@ import { windowWidth } from "../const";
 import { EventsContext } from "../contexts/EventsContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FlatList } from "react-native-gesture-handler";
+import SearchCity from "../components/SearchCity";
+import ChooseDate from "../components/ChooseDate";
+import EventInfos from "../components/EventInfos";
 
 export default function Favoris({ navigation }) {
-  const { favorites, setFavorites } = useContext(EventsContext);
-
-  // get favorite from localStorage
-  /* useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
-
-    console.log(favorites);
-    if (favorites) {
-      setFavorites(favorites);
-    }
-  }, []); */
-
+  const { favorites, setFavorites, modalVisible } = useContext(EventsContext);
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -29,11 +21,28 @@ export default function Favoris({ navigation }) {
 
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem("@storage_Key");
+      const jsonValue = await AsyncStorage.getItem("@favorites");
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
       // error reading value
     }
+  };
+
+  const renderItem = ({ item }) => {
+    return (
+      <View>
+        <EventInfos />
+        {!modalVisible && (
+          <Image
+            source={{ uri: item.download_url }}
+            style={{
+              width: windowWidth,
+              height: 200,
+            }}
+          />
+        )}
+      </View>
+    );
   };
 
   useEffect(() => {
@@ -50,21 +59,10 @@ export default function Favoris({ navigation }) {
   }, []);
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <FlatList
-        data={favorites}
-        renderItem={({ item }) => (
-          <View>
-            <Image
-              source={{ uri: item.download_url }}
-              style={{
-                width: windowWidth,
-                height: 200,
-              }}
-            />
-          </View>
-        )}
-      />
+    <View style={{ backgroundColor: "white" }}>
+      <SearchCity />
+      <ChooseDate />
+      <FlatList data={favorites} renderItem={renderItem} />
     </View>
   );
 }

@@ -57,9 +57,7 @@ export default function ChooseDate() {
       style={{ fontSize: 20, margin: 10, flexDirection: "row" }}
       onPress={() => setDisplayCalendar(true)}
     >
-      <Text style={{ fontSize: 20 }}>
-        {chooseDate.day}/{chooseDate.month}/{chooseDate.year}
-      </Text>
+      <Text style={{ fontSize: 20 }}>Maintenant</Text>
       <Ionicons name="chevron-down-outline" size={24} style={{}} />
     </TouchableOpacity>
   );

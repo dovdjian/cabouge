@@ -13,14 +13,21 @@ import { api, windowWidth } from "../const";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { FavoriteIcon } from "../assets/star.png";
 import { EventsContext } from "../contexts/EventsContext";
+import EventInfos from "./EventInfos";
 
 export default function Events({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [eventInfos, setEventInfos] = useState({});
   const [eventIndex, setEventIndex] = useState(0);
   const flatListRef = useRef(null);
-  const { events, setEvents, favorites, setFavorites, filtres, setFiltres } =
-    useContext(EventsContext);
+  const {
+    events,
+    setEvents,
+    favorites,
+    setFavorites,
+    filtres,
+    setEventInfos,
+    modalVisible,
+    setModalVisible,
+  } = useContext(EventsContext);
 
   const loadList = async () => {
     await api
@@ -94,7 +101,7 @@ export default function Events({ navigation }) {
         >
           <Ionicons name="share-outline" size={32} color="white" />
         </TouchableOpacity>
-        <Text style={styles.status}> En cours</Text>
+        <Text style={styles.status}>En cours</Text>
         <Text style={styles.title}>{item.author}</Text>
         <FlatList
           nestedScrollEnabled={true}
@@ -140,30 +147,9 @@ export default function Events({ navigation }) {
     }
   }, [flatListRef, eventIndex, handleReturn]);
 
-  // store favorite in localStorage
-  /* useEffect(() => {
-    console.log(favorites);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]); */
-
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Modal visible={modalVisible}>
-        <View
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-          <Ionicons
-            style={{ position: "absolute", top: 10, left: 5 }}
-            name="close-circle-outline"
-            size={35}
-            onPress={() => handleReturn(eventIndex)}
-          />
-          <Image
-            source={{ uri: eventInfos.download_url }}
-            style={styles.imageInModal}
-          />
-        </View>
-      </Modal>
+      <EventInfos />
       {!modalVisible && (
         <FlatList
           showsHorizontalScrollIndicator={false}

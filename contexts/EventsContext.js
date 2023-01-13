@@ -1,10 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import { View } from "react-native";
 
 export const EventsContext = createContext({});
 
 export const EventsProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
+  const [eventInfos, setEventInfos] = useState({});
+  const [modalVisible, setModalVisible] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [filtres, setFiltres] = useState([
     "Sport",
@@ -17,7 +19,6 @@ export const EventsProvider = ({ children }) => {
     "Bars",
     "Autre",
   ]);
-  const [date, setDate] = useState(new Date());
 
   return (
     <EventsContext.Provider
@@ -28,8 +29,10 @@ export const EventsProvider = ({ children }) => {
         setFavorites,
         filtres,
         setFiltres,
-        date,
-        setDate,
+        modalVisible,
+        setModalVisible,
+        eventInfos,
+        setEventInfos,
       }}
     >
       {children}

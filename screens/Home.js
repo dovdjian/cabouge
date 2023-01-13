@@ -11,9 +11,7 @@ import ChooseDate from "../components/ChooseDate";
 export default function Home({ navigation }) {
   return (
     <View style={styles.homeContainer}>
-      <View>
-        <SearchCity />
-      </View>
+      <SearchCity />
       <View>
         <Text style={{ fontSize: 20, margin: 10 }}>Que faire ?</Text>
       </View>

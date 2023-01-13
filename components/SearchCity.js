@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { SearchBar } from "react-native-elements";
 
-export default function SearchCity({ navigation }) {
+export default function SearchCity() {
   const [search, setSearch] = useState("");
 
   return (
