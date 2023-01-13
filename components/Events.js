@@ -103,7 +103,7 @@ export default function Events({ navigation }) {
         </TouchableOpacity>
         <Text style={styles.status}>En cours</Text>
         <Text style={styles.title}>{item.author}</Text>
-        <FlatList
+        {/* <FlatList
           nestedScrollEnabled={true}
           style={styles.filtres}
           showsHorizontalScrollIndicator={true} // TODO: false
@@ -116,7 +116,10 @@ export default function Events({ navigation }) {
               <Text style={styles.filtreText}>{item}</Text>
             </View>
           )}
-        />
+        /> */}
+        <View>
+          <Text> {filtres[0]} </Text>
+        </View>
         <Text style={styles.description}>Description de l'event </Text>
         <TouchableOpacity
           style={styles.websiteButton}

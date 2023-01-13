@@ -15,7 +15,8 @@ export default function Home({ navigation }) {
       <View>
         <Text style={{ fontSize: 20, margin: 10 }}>Que faire ?</Text>
       </View>
-      <Filtres />
+      {/*       <Filtres />
+       */}
       <ChooseDate />
       <Events />
     </View>
