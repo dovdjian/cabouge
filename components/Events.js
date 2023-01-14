@@ -21,7 +21,7 @@ import * as FileSystem from "expo-file-system";
 
 export default function Events({ navigation }) {
   const [eventIndex, setEventIndex] = useState(0);
-  const flatListRef = useRef(null);
+  //const flatListRef = useRef(null);
   const {
     events,
     setEvents,
@@ -31,6 +31,7 @@ export default function Events({ navigation }) {
     setEventInfos,
     modalVisible,
     setModalVisible,
+    flatListRef,
   } = useContext(EventsContext);
 
   const loadList = async () => {
@@ -58,7 +59,6 @@ export default function Events({ navigation }) {
         index: index,
         animated: false,
       });
-    setModalVisible(false);
   };
 
   const addEventToFavorites = (item) => {
@@ -132,20 +132,6 @@ export default function Events({ navigation }) {
         </TouchableOpacity>
         <Text style={styles.status}>En cours</Text>
         <Text style={styles.title}>{item.author}</Text>
-        {/* <FlatList
-          nestedScrollEnabled={true}
-          style={styles.filtres}
-          showsHorizontalScrollIndicator={true} // TODO: false
-          alignItems="center"
-          horizontal={true}
-          data={filtres}
-          //keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.filtre}>
-              <Text style={styles.filtreText}>{item}</Text>
-            </View>
-          )}
-        /> */}
         <View>
           <Text> {filtres[0]} </Text>
         </View>
@@ -174,10 +160,11 @@ export default function Events({ navigation }) {
   };
 
   useEffect(() => {
-    if (flatListRef.current && eventIndex) {
+    console.log("modalVisible", modalVisible);
+    if (!modalVisible && eventIndex !== 0) {
       handleReturn(eventIndex);
     }
-  }, [flatListRef, eventIndex, handleReturn]);
+  }, [modalVisible]);
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -189,6 +176,7 @@ export default function Events({ navigation }) {
           style={styles.eventsList}
           ref={flatListRef}
           getItemLayout={(data, index) => ({
+            data,
             length: 200,
             offset: 200 * index,
             index,

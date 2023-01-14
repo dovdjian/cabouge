@@ -5,19 +5,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { EventsContext } from "../contexts/EventsContext";
 
 export default function EventInfos() {
-  const { events, eventInfos, eventIndex, modalVisible, setModalVisible } =
+  const { eventInfos, modalVisible, setModalVisible } =
     useContext(EventsContext);
-
-  const flatListRef = useRef(null);
-  const handleReturn = (id) => {
-    const index = events.findIndex((item) => item.id === id);
-    if (flatListRef.current)
-      flatListRef.current.scrollToIndex({
-        index: index,
-        animated: false,
-      });
-    setModalVisible(false);
-  };
 
   return (
     <Modal visible={modalVisible}>
@@ -26,7 +15,7 @@ export default function EventInfos() {
           style={{ position: "absolute", top: 10, left: 5 }}
           name="close-circle-outline"
           size={35}
-          onPress={() => handleReturn(eventIndex)}
+          onPress={() => setModalVisible(false)}
         />
         <Image
           source={{ uri: eventInfos.download_url }}

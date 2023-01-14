@@ -1,5 +1,4 @@
 import { createContext, useRef, useState } from "react";
-import { View } from "react-native";
 
 export const EventsContext = createContext({});
 
@@ -19,6 +18,7 @@ export const EventsProvider = ({ children }) => {
     "Bars",
     "Autre",
   ]);
+  const flatListRef = useRef(null);
 
   return (
     <EventsContext.Provider
@@ -33,6 +33,7 @@ export const EventsProvider = ({ children }) => {
         setModalVisible,
         eventInfos,
         setEventInfos,
+        flatListRef,
       }}
     >
       {children}
