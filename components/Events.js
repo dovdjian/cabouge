@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import {
   Image,
+  Linking,
   Modal,
   ScrollView,
   StyleSheet,
@@ -14,6 +15,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { FavoriteIcon } from "../assets/star.png";
 import { EventsContext } from "../contexts/EventsContext";
 import EventInfos from "./EventInfos";
+import * as Sharing from "expo-sharing";
+import { Asset } from "expo-asset";
+import * as FileSystem from "expo-file-system";
 
 export default function Events({ navigation }) {
   const [eventIndex, setEventIndex] = useState(0);
@@ -74,12 +78,35 @@ export default function Events({ navigation }) {
     return true;
   };
 
-  const shareEvent = (item) => {
+  const shareEvent = async (item) => {
     console.log(item);
+
+    try {
+      const result = await Sharing.isAvailableAsync();
+
+      if (!result) {
+        alert("Sharing is not available on your platform");
+        return;
+      }
+      const image = require("../assets/star.png");
+      const asset = Asset.fromModule(image);
+      const tmpFile = FileSystem.cacheDirectory + "star.png";
+
+      await asset.downloadAsync();
+      await FileSystem.copyAsync({ from: asset.localUri, to: tmpFile });
+      await Sharing.shareAsync(tmpFile, {
+        dialogTitle: "Is it a snake or a hat?",
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const redirectToWebsite = () => {
     console.log("redirect");
+    // TODO: redirect to website https://www.deepl.com/fr/translator
+
+    //Linking.openURL("https://www.deepl.com/fr/translator"); inserer l'url de l'event
   };
 
   const renderItem = ({ item }) => {

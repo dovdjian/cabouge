@@ -1,11 +1,12 @@
-# my-app
+# cabouge
 
-## Installation ##
+## Installation
+
 Clone the project
 
-## Usage ##
+## Usage
 
-- cd my-app
+- cd cabouge
 - yarn start # you can open iOS, Android, or web from here, or run them directly with the commands below.
 - yarn android # android simulator
 - yarn ios # requires an iOS device or macOS for access to an iOS simulator
@@ -13,18 +14,18 @@ Clone the project
 
 After yarn start:
 
-## Browser ##
+## Browser
+
 Press w
 
-## Mobile ##
+## Mobile
 
 - Download expo go app in mobile
 - connect with same internet between mobile and pc
 - scan QR code
 
-## Ressources ##
+## Ressources
 
 https://reactnative.dev/ react native
 
 https://reactnavigation.org/ react navigation
-
