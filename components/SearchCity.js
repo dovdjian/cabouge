@@ -90,7 +90,7 @@ export default function SearchCity() {
                     position: "absolute",
                   }}
                 >
-                  {item.code}
+                  {item.codeDepartement}
                 </Text>
               </TouchableOpacity>
             ) : (

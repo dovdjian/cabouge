@@ -13,7 +13,7 @@ export default function EventInfos() {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Ionicons
           style={{ position: "absolute", top: 10, left: 5 }}
-          name="close-circle-outline"
+          name="arrow-back-outline"
           size={35}
           onPress={() => setModalVisible(false)}
         />
