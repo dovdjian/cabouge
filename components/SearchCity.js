@@ -16,6 +16,7 @@ export default function SearchCity() {
   };
 
   const handleClear = () => {
+    console.log("Clear");
     setIsCitySelected(false);
     setSearch("");
     setSelectedCity("");
@@ -23,29 +24,24 @@ export default function SearchCity() {
   };
 
   const loadCities = async (text) => {
-    await api
-      .get(
+    setSearch(text);
+    try {
+      const res = await api.get(
         "https://geo.api.gouv.fr/communes?nom=" +
           text +
           "&boost=population&limit=5"
-      )
-      .then((res) => setCities(res.data))
-      .catch(() => console.log("Axios Error"));
+      );
+      setCities(res.data);
+      setIsCitySelected(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  cities.sort((a, b) => {
-    if (a.nom < b.nom) {
-      return -1;
-    }
-    if (a.nom > b.nom) {
-      return 1;
-    }
-    return 0;
-  });
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (search !== "") loadCities(search);
     console.log(cities);
-  }, [search]);
+  }, [search]); */
 
   return (
     <View>
@@ -54,7 +50,7 @@ export default function SearchCity() {
         placeholderTextColor={"black"}
         searchIcon={{ color: "black" }}
         clearIcon={{ color: "black" }}
-        onChangeText={(text) => setSearch(text)}
+        onChangeText={(text) => loadCities(text)}
         onClear={() => handleClear()}
         value={search}
         containerStyle={{
@@ -72,7 +68,9 @@ export default function SearchCity() {
       />
       {!isCitySelected ? (
         <FlatList
-          data={cities}
+          data={cities.sort((a, b) => {
+            return b.population - a.population;
+          })}
           renderItem={({ item }) =>
             item.population > 10000 ? (
               <TouchableOpacity

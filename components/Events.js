@@ -34,10 +34,12 @@ export default function Events({ navigation }) {
   } = useContext(EventsContext);
 
   const loadList = async () => {
-    await api
-      .get("https://picsum.photos/v2/list")
-      .then((res) => setEvents(res.data))
-      .catch(() => console.log("Axios Error"));
+    try {
+      const res = await api.get("https://picsum.photos/v2/list");
+      setEvents(res.data);
+    } catch (error) {
+      console.log("Axios Error");
+    }
   };
   useEffect(() => {
     loadList();
