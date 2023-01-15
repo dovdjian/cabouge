@@ -8,16 +8,15 @@ export default function SearchCity() {
   const [search, setSearch] = useState("");
   const [cities, setCities] = useState([]);
   const [isCitySelected, setIsCitySelected] = useState(false);
-  const { setSelectedCity } = useContext(EventsContext);
+  const { setSelectedCityCodeDep } = useContext(EventsContext);
 
   const handlePress = (item) => {
     setSearch(item.nom);
-    setSelectedCity(item.nom);
+    setSelectedCityCodeDep(item.codeDepartement);
     setIsCitySelected(true);
   };
 
   const handleClear = () => {
-    console.log("Clear");
     setIsCitySelected(false);
     setSearch("");
     setCities([]);

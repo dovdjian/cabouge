@@ -8,9 +8,14 @@ export const eventsData = [
   {
     id: 0,
     name: "Magnétique",
-    date_start: "2022-20-09",
-    date_end: "2023-05-03",
-    lieu: "Rennes",
+    date_start: "2022-09-20",
+    date_end: "2023-03-05",
+    lieu: {
+      ville: "Rennes",
+      adresse: "Espace des Sciences",
+      code_postal: "35000",
+      codeDepartement: "35",
+    },
     description:
       "La nouvelle exposition temporaire de l’Espace des sciences explore les mystères du magnétisme.",
     category: "Exposition",
@@ -21,12 +26,17 @@ export const eventsData = [
   },
   {
     id: 1,
-    name: "15ÈME SEMAINE DU CINÉMA BRITANNIQUE",
-    date_start: "2023-14-01",
-    date_end: "2023-21-01",
-    lieu: "Rennes",
+    name: "15eme semaine du cinéma britannique",
+    date_start: "2023-01-14",
+    date_end: "2023-01-21",
+    lieu: {
+      ville: "Bruz",
+      adresse: "10 Avenue du Général de Gaullle",
+      code_postal: "35170",
+      codeDepartement: "35",
+    },
     description:
-      "Chaque année le Grand Logis organise sa semaine du cinéma britannique. Une dizaine de films y sont diffusés, dont certains en compétitions.",
+      "Chaque année le Grand Logis organise sa semaine du cinéma britannique.",
     category: "Cinéma",
     price: 20,
     download_url:

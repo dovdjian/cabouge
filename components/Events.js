@@ -17,19 +17,23 @@ import { EventsContext } from "../contexts/EventsContext";
 import EventInfos from "./EventInfos";
 
 export default function Events({ navigation }) {
-  const [eventIndex, setEventIndex] = useState(0);
   //const flatListRef = useRef(null);
   const {
     events,
     setEvents,
     favorites,
-    setFavorites,
     filtres,
+    eventInfos,
     setEventInfos,
+    eventIndex,
+    setEventIndex,
     modalVisible,
     setModalVisible,
     flatListRef,
-    selectedCity,
+    selectedCityCodeDep,
+    addEventToFavorites,
+    isFavorite,
+    renderModal,
   } = useContext(EventsContext);
 
   /* const loadList = async () => {
@@ -44,12 +48,6 @@ export default function Events({ navigation }) {
     loadList();
   }, []); */
 
-  const renderModal = ({ item }) => {
-    setEventInfos(item);
-    setModalVisible(true);
-    setEventIndex(item.id);
-  };
-
   const handleReturn = (id) => {
     const index = events.findIndex((item) => item.id === id);
     if (flatListRef.current)
@@ -57,25 +55,6 @@ export default function Events({ navigation }) {
         index: index,
         animated: false,
       });
-  };
-
-  const addEventToFavorites = (item) => {
-    console.log(item);
-    const index = favorites.findIndex((favorite) => favorite.id === item.id);
-    if (index === -1) {
-      setFavorites([...favorites, item]);
-    } else {
-      favorites.splice(index, 1);
-      setFavorites([...favorites]);
-    }
-  };
-
-  const isFavorite = (item) => {
-    const index = favorites.findIndex((favorite) => favorite.id === item.id);
-    if (index === -1) {
-      return false;
-    }
-    return true;
   };
 
   const shareEvent = async (item) => {
@@ -101,31 +80,39 @@ export default function Events({ navigation }) {
     Linking.openURL(item.website); //inserer l'url de l'event
   };
 
+  const calculItemStatus = (item) => {
+    const today = new Date();
+    const date_start = new Date(item.date_start);
+    const date_end = new Date(item.date_end);
+
+    if (today < date_start) {
+      return "À venir";
+    } else if (today > date_end) {
+      return "Terminé";
+    } else {
+      return "En cours";
+    }
+  };
+
   const renderItem = ({ item }) => {
     return (
-      item.lieu === selectedCity && (
+      item.lieu.codeDepartement === selectedCityCodeDep && (
         <View style={styles.eventContainer}>
-          <TouchableOpacity
-            onPress={() => renderModal({ item })}
-            activeOpacity={1}
-          >
+          <TouchableOpacity onPress={() => renderModal(item)} activeOpacity={1}>
             <Image
               source={{ uri: item.download_url }}
               style={styles.imageInModal}
             />
           </TouchableOpacity>
-
           <TouchableOpacity
             style={styles.iconShare}
             onPress={() => shareEvent(item)}
           >
             <Ionicons name="share-outline" size={32} color="white" />
           </TouchableOpacity>
-          <Text style={styles.status}>En cours</Text>
+          <Text style={styles.status}> {calculItemStatus(item)} </Text>
           <Text style={styles.title}>{item.name}</Text>
-          <View>
-            <Text> {item.category} </Text>
-          </View>
+          <Text style={styles.category}>{item.category}</Text>
           <Text style={styles.description}> {item.description} </Text>
           <TouchableOpacity
             style={styles.websiteButton}
@@ -160,7 +147,7 @@ export default function Events({ navigation }) {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <EventInfos />
+      <EventInfos item={eventInfos} />
       {!modalVisible && (
         <FlatList
           showsHorizontalScrollIndicator={false}
@@ -196,11 +183,10 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   iconFavorite: {
-    position: "relative",
     alignSelf: "center",
     borderRadius: 100,
     backgroundColor: "#8F8F8F",
-    top: 24,
+    top: 30,
   },
   icon: {
     fontSize: 30,
@@ -227,12 +213,25 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 18,
+    fontWeight: "bold",
+    marginVertical: 10,
+  },
+  category: {
+    textAlign: "center",
+    fontSize: 15,
+    backgroundColor: "#8F8F8F",
+    borderRadius: 20,
+    paddingHorizontal: 20,
+    marginVertical: 10,
   },
   status: {
     textAlign: "center",
-    fontSize: 20,
-    color: "green",
+    fontSize: 10,
+    color: "white",
+    borderRadius: 10,
+    backgroundColor: "#050505",
+    paddingHorizontal: 10,
   },
   description: {
     textAlign: "center",
@@ -240,10 +239,10 @@ const styles = StyleSheet.create({
   },
   websiteButton: {
     textAlign: "center",
-    fontSize: 12,
     backgroundColor: "#8F8F8F",
     borderRadius: 20,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
+    marginTop: 20,
   },
   filtres: {
     marginLeft: 10,

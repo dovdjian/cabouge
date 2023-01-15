@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Image, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { windowWidth } from "../const";
 import { EventsContext } from "../contexts/EventsContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -7,9 +7,16 @@ import { FlatList } from "react-native-gesture-handler";
 import SearchCity from "../components/SearchCity";
 import ChooseDate from "../components/ChooseDate";
 import EventInfos from "../components/EventInfos";
+import { TouchableOpacity } from "react-native";
 
-export default function Favoris({ navigation }) {
-  const { favorites, setFavorites, modalVisible } = useContext(EventsContext);
+export default function Favoris() {
+  const {
+    favorites,
+    setFavorites,
+    modalVisible,
+    selectedCityCodeDep,
+    renderModal,
+  } = useContext(EventsContext);
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -30,18 +37,19 @@ export default function Favoris({ navigation }) {
 
   const renderItem = ({ item }) => {
     return (
-      <View>
-        <EventInfos />
-        {!modalVisible && (
-          <Image
-            source={{ uri: item.download_url }}
-            style={{
-              width: windowWidth,
-              height: 200,
-            }}
-          />
-        )}
-      </View>
+      item.lieu.codeDepartement === selectedCityCodeDep && (
+        <View>
+          <TouchableOpacity onPress={() => renderModal(item)} activeOpacity={1}>
+            <Image
+              source={{ uri: item.download_url }}
+              style={{
+                width: windowWidth,
+                height: 200,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      )
     );
   };
 
@@ -66,3 +74,9 @@ export default function Favoris({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

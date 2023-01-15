@@ -6,6 +6,7 @@ export const EventsContext = createContext({});
 export const EventsProvider = ({ children }) => {
   const [events, setEvents] = useState(eventsData);
   const [eventInfos, setEventInfos] = useState({});
+  const [eventIndex, setEventIndex] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [filtres, setFiltres] = useState([
@@ -20,7 +21,31 @@ export const EventsProvider = ({ children }) => {
     "Autre",
   ]);
   const flatListRef = useRef(null);
-  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedCityCodeDep, setSelectedCityCodeDep] = useState("");
+
+  const addEventToFavorites = (item) => {
+    const index = favorites.findIndex((favorite) => favorite.id === item.id);
+    if (index === -1) {
+      setFavorites([...favorites, item]);
+    } else {
+      favorites.splice(index, 1);
+      setFavorites([...favorites]);
+    }
+  };
+
+  const isFavorite = (item) => {
+    const index = favorites.findIndex((favorite) => favorite.id === item.id);
+    if (index === -1) {
+      return false;
+    }
+    return true;
+  };
+
+  const renderModal = (item) => {
+    setEventInfos(item);
+    setModalVisible(true);
+    setEventIndex(item.id);
+  };
 
   return (
     <EventsContext.Provider
@@ -35,9 +60,14 @@ export const EventsProvider = ({ children }) => {
         setModalVisible,
         eventInfos,
         setEventInfos,
+        eventIndex,
+        setEventIndex,
         flatListRef,
-        selectedCity,
-        setSelectedCity,
+        selectedCityCodeDep,
+        setSelectedCityCodeDep,
+        addEventToFavorites,
+        isFavorite,
+        renderModal,
       }}
     >
       {children}

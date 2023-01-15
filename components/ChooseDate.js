@@ -13,7 +13,6 @@ export default function ChooseDate() {
   const [displayCalendar, setDisplayCalendar] = useState(false);
   const [confirmDate, setConfirmDate] = useState(false);
 
-  console.log(chooseDate);
   const handleConfirmDate = (day) => {
     setConfirmDate(false);
     setDisplayCalendar(false);
