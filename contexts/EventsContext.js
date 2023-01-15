@@ -1,4 +1,5 @@
 import { createContext, useRef, useState } from "react";
+import { Linking, Share } from "react-native";
 import { eventsData } from "../const";
 
 export const EventsContext = createContext({});
@@ -47,6 +48,43 @@ export const EventsProvider = ({ children }) => {
     setEventIndex(item.id);
   };
 
+  const shareEvent = async (item) => {
+    try {
+      const result = await Share.share({
+        message: item.website,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const redirectToWebsite = (item) => {
+    Linking.openURL(item.website); //inserer l'url de l'event
+  };
+
+  const calculItemStatus = (item) => {
+    const today = new Date();
+    const date_start = new Date(item.date_start);
+    const date_end = new Date(item.date_end);
+
+    if (today < date_start) {
+      return "À venir";
+    } else if (today > date_end) {
+      return "Terminé";
+    } else {
+      return "En cours";
+    }
+  };
+
   return (
     <EventsContext.Provider
       value={{
@@ -68,6 +106,9 @@ export const EventsProvider = ({ children }) => {
         addEventToFavorites,
         isFavorite,
         renderModal,
+        shareEvent,
+        redirectToWebsite,
+        calculItemStatus,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ export default function SearchCity() {
     setIsCitySelected(false);
     setSearch("");
     setCities([]);
+    setSelectedCityCodeDep("");
   };
 
   const loadCities = async (text) => {

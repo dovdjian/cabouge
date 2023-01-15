@@ -34,6 +34,9 @@ export default function Events({ navigation }) {
     addEventToFavorites,
     isFavorite,
     renderModal,
+    shareEvent,
+    redirectToWebsite,
+    calculItemStatus,
   } = useContext(EventsContext);
 
   /* const loadList = async () => {
@@ -57,46 +60,11 @@ export default function Events({ navigation }) {
       });
   };
 
-  const shareEvent = async (item) => {
-    try {
-      const result = await Share.share({
-        message: item.website,
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
-  const redirectToWebsite = (item) => {
-    Linking.openURL(item.website); //inserer l'url de l'event
-  };
-
-  const calculItemStatus = (item) => {
-    const today = new Date();
-    const date_start = new Date(item.date_start);
-    const date_end = new Date(item.date_end);
-
-    if (today < date_start) {
-      return "À venir";
-    } else if (today > date_end) {
-      return "Terminé";
-    } else {
-      return "En cours";
-    }
-  };
-
   const renderItem = ({ item }) => {
     return (
-      item.lieu.codeDepartement === selectedCityCodeDep && (
+      ((item.lieu.codeDepartement === selectedCityCodeDep &&
+        selectedCityCodeDep !== "") ||
+        selectedCityCodeDep === "") && (
         <View style={styles.eventContainer}>
           <TouchableOpacity onPress={() => renderModal(item)} activeOpacity={1}>
             <Image
@@ -110,10 +78,9 @@ export default function Events({ navigation }) {
           >
             <Ionicons name="share-outline" size={32} color="white" />
           </TouchableOpacity>
-          <Text style={styles.status}> {calculItemStatus(item)} </Text>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.category}>{item.category}</Text>
-          <Text style={styles.description}> {item.description} </Text>
+          <Text style={styles.description}>{item.description}</Text>
           <TouchableOpacity
             style={styles.websiteButton}
             onPress={() => {
@@ -139,7 +106,6 @@ export default function Events({ navigation }) {
   };
 
   useEffect(() => {
-    console.log("modalVisible", modalVisible);
     if (!modalVisible && eventIndex !== 0) {
       handleReturn(eventIndex);
     }
@@ -193,7 +159,6 @@ const styles = StyleSheet.create({
     color: "white",
   },
   iconShare: {
-    position: "relative",
     alignSelf: "flex-end",
     bottom: 35,
     right: 35,

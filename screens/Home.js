@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Calendar } from "react-native-calendars";
 import Events from "../components/Events";
@@ -9,6 +9,24 @@ import SearchCity from "../components/SearchCity";
 import ChooseDate from "../components/ChooseDate";
 
 export default function Home({ navigation }) {
+  const {
+    setEventInfos,
+    setModalVisible,
+    setEventIndex,
+    setSelectedCityCodeDep,
+  } = useContext(EventsContext);
+
+  useEffect(() => {
+    console.log("Home");
+    // reload when coming back from other screens
+    navigation.addListener("focus", () => {
+      console.log("Home focus");
+      setEventInfos({});
+      setEventIndex(0);
+      setSelectedCityCodeDep("");
+    });
+  }, [setEventInfos, setEventIndex, setSelectedCityCodeDep]);
+
   return (
     <View style={styles.homeContainer}>
       <SearchCity />

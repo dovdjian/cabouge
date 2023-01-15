@@ -9,13 +9,16 @@ import ChooseDate from "../components/ChooseDate";
 import EventInfos from "../components/EventInfos";
 import { TouchableOpacity } from "react-native";
 
-export default function Favoris() {
+export default function Favoris({ navigation }) {
   const {
     favorites,
     setFavorites,
     modalVisible,
     selectedCityCodeDep,
     renderModal,
+    setEventInfos,
+    setEventIndex,
+    setSelectedCityCodeDep,
   } = useContext(EventsContext);
   const storeData = async (value) => {
     try {
@@ -37,7 +40,9 @@ export default function Favoris() {
 
   const renderItem = ({ item }) => {
     return (
-      item.lieu.codeDepartement === selectedCityCodeDep && (
+      ((item.lieu.codeDepartement === selectedCityCodeDep &&
+        selectedCityCodeDep !== "") ||
+        selectedCityCodeDep === "") && (
         <View>
           <TouchableOpacity onPress={() => renderModal(item)} activeOpacity={1}>
             <Image
@@ -65,6 +70,17 @@ export default function Favoris() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    console.log("Home");
+    // reload when coming back from other screens
+    navigation.addListener("focus", () => {
+      console.log("Home focus");
+      setEventInfos({});
+      setEventIndex(0);
+      setSelectedCityCodeDep("");
+    });
+  }, [setEventInfos, setEventIndex, setSelectedCityCodeDep]);
 
   return (
     <View style={{ backgroundColor: "white" }}>

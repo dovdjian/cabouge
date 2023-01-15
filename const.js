@@ -28,7 +28,7 @@ export const eventsData = [
     id: 1,
     name: "15eme semaine du cinéma britannique",
     date_start: "2023-01-14",
-    date_end: "2023-01-21",
+    date_end: "2023-01-2",
     lieu: {
       ville: "Bruz",
       adresse: "10 Avenue du Général de Gaullle",
