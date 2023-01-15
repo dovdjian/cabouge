@@ -54,10 +54,7 @@ export default function EventInfos(props) {
         <View style={styles.eventContainer}>
           <View style={styles.nameContainer}>
             <Text style={styles.title}>{props.item.name}</Text>
-            <TouchableOpacity
-              style={styles.iconShare}
-              onPress={() => shareEvent(props.item)}
-            >
+            <TouchableOpacity onPress={() => shareEvent(props.item)}>
               <Ionicons name="share-outline" size={32} color="black" />
             </TouchableOpacity>
           </View>
@@ -120,7 +117,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     left: 10,
   },
-  iconShare: {},
   title: {
     fontSize: 18,
     marginVertical: 10,

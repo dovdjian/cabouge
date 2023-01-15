@@ -78,6 +78,7 @@ export default function Events({ navigation }) {
           >
             <Ionicons name="share-outline" size={32} color="white" />
           </TouchableOpacity>
+          <Text style={styles.status}>{calculItemStatus(item)}</Text>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.category}>{item.category}</Text>
           <Text style={styles.description}>{item.description}</Text>
