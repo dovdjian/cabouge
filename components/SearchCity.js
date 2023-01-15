@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { api } from "../const";
+import { EventsContext } from "../contexts/EventsContext";
 
 export default function SearchCity() {
   const [search, setSearch] = useState("");
   const [cities, setCities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState("");
   const [isCitySelected, setIsCitySelected] = useState(false);
+  const { setSelectedCity } = useContext(EventsContext);
 
   const handlePress = (item) => {
     setSearch(item.nom);
@@ -19,7 +20,6 @@ export default function SearchCity() {
     console.log("Clear");
     setIsCitySelected(false);
     setSearch("");
-    setSelectedCity("");
     setCities([]);
   };
 

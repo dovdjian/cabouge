@@ -1,9 +1,10 @@
 import { createContext, useRef, useState } from "react";
+import { eventsData } from "../const";
 
 export const EventsContext = createContext({});
 
 export const EventsProvider = ({ children }) => {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(eventsData);
   const [eventInfos, setEventInfos] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
   const [favorites, setFavorites] = useState([]);
@@ -19,6 +20,7 @@ export const EventsProvider = ({ children }) => {
     "Autre",
   ]);
   const flatListRef = useRef(null);
+  const [selectedCity, setSelectedCity] = useState("");
 
   return (
     <EventsContext.Provider
@@ -34,6 +36,8 @@ export const EventsProvider = ({ children }) => {
         eventInfos,
         setEventInfos,
         flatListRef,
+        selectedCity,
+        setSelectedCity,
       }}
     >
       {children}

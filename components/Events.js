@@ -5,6 +5,7 @@ import {
   Modal,
   ScrollView,
   StyleSheet,
+  Share,
   Text,
   TouchableOpacity,
   View,
@@ -12,12 +13,8 @@ import {
 import { FlatList } from "react-native-gesture-handler";
 import { api, windowWidth } from "../const";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { FavoriteIcon } from "../assets/star.png";
 import { EventsContext } from "../contexts/EventsContext";
 import EventInfos from "./EventInfos";
-import * as Sharing from "expo-sharing";
-import { Asset } from "expo-asset";
-import * as FileSystem from "expo-file-system";
 
 export default function Events({ navigation }) {
   const [eventIndex, setEventIndex] = useState(0);
@@ -32,9 +29,10 @@ export default function Events({ navigation }) {
     modalVisible,
     setModalVisible,
     flatListRef,
+    selectedCity,
   } = useContext(EventsContext);
 
-  const loadList = async () => {
+  /* const loadList = async () => {
     try {
       const res = await api.get("https://picsum.photos/v2/list");
       setEvents(res.data);
@@ -44,7 +42,7 @@ export default function Events({ navigation }) {
   };
   useEffect(() => {
     loadList();
-  }, []);
+  }, []); */
 
   const renderModal = ({ item }) => {
     setEventInfos(item);
@@ -81,81 +79,75 @@ export default function Events({ navigation }) {
   };
 
   const shareEvent = async (item) => {
-    console.log(item);
-
     try {
-      const result = await Sharing.isAvailableAsync();
-
-      if (!result) {
-        alert("Sharing is not available on your platform");
-        return;
-      }
-      const image = require("../assets/star.png");
-      const asset = Asset.fromModule(image);
-      const tmpFile = FileSystem.cacheDirectory + "star.png";
-
-      await asset.downloadAsync();
-      await FileSystem.copyAsync({ from: asset.localUri, to: tmpFile });
-      await Sharing.shareAsync(tmpFile, {
-        dialogTitle: "Is it a snake or a hat?",
+      const result = await Share.share({
+        message: item.website,
       });
-    } catch (e) {
-      console.error(e);
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
     }
   };
 
-  const redirectToWebsite = () => {
-    console.log("redirect");
-    // TODO: redirect to website https://www.deepl.com/fr/translator
-
-    //Linking.openURL("https://www.deepl.com/fr/translator"); inserer l'url de l'event
+  const redirectToWebsite = (item) => {
+    Linking.openURL(item.website); //inserer l'url de l'event
   };
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.eventContainer}>
-        <TouchableOpacity
-          onPress={() => renderModal({ item })}
-          activeOpacity={1}
-        >
-          <Image
-            source={{ uri: item.download_url }}
-            style={styles.imageInModal}
-          />
-        </TouchableOpacity>
+      item.lieu === selectedCity && (
+        <View style={styles.eventContainer}>
+          <TouchableOpacity
+            onPress={() => renderModal({ item })}
+            activeOpacity={1}
+          >
+            <Image
+              source={{ uri: item.download_url }}
+              style={styles.imageInModal}
+            />
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.iconShare}
-          onPress={() => shareEvent(item)}
-        >
-          <Ionicons name="share-outline" size={32} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.status}>En cours</Text>
-        <Text style={styles.title}>{item.author}</Text>
-        <View>
-          <Text> {filtres[0]} </Text>
+          <TouchableOpacity
+            style={styles.iconShare}
+            onPress={() => shareEvent(item)}
+          >
+            <Ionicons name="share-outline" size={32} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.status}>En cours</Text>
+          <Text style={styles.title}>{item.name}</Text>
+          <View>
+            <Text> {item.category} </Text>
+          </View>
+          <Text style={styles.description}> {item.description} </Text>
+          <TouchableOpacity
+            style={styles.websiteButton}
+            onPress={() => {
+              redirectToWebsite(item);
+            }}
+          >
+            <Text>Website</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => addEventToFavorites(item)}
+            activeOpacity={1}
+            style={styles.iconFavorite}
+          >
+            {isFavorite(item) ? (
+              <Ionicons name="star" size={84} color="white" />
+            ) : (
+              <Ionicons name="star-outline" size={84} color="white" />
+            )}
+          </TouchableOpacity>
         </View>
-        <Text style={styles.description}>Description de l'event </Text>
-        <TouchableOpacity
-          style={styles.websiteButton}
-          onPress={() => {
-            redirectToWebsite();
-          }}
-        >
-          <Text>Website</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => addEventToFavorites(item)}
-          activeOpacity={1}
-          style={styles.iconFavorite}
-        >
-          {isFavorite(item) ? (
-            <Ionicons name="star" size={84} color="white" />
-          ) : (
-            <Ionicons name="star-outline" size={84} color="white" />
-          )}
-        </TouchableOpacity>
-      </View>
+      )
     );
   };
 
@@ -244,7 +236,7 @@ const styles = StyleSheet.create({
   },
   description: {
     textAlign: "center",
-    fontSize: 12,
+    fontSize: 15,
   },
   websiteButton: {
     textAlign: "center",
