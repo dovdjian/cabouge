@@ -47,8 +47,8 @@ export default function SearchCity() {
     <View>
       <SearchBar
         placeholder="Trouver une ville..."
-        placeholderTextColor={"black"}
-        searchIcon={{ color: "black" }}
+        placeholderTextColor={"#787878"}
+        searchIcon={{ color: "#4C729E" }}
         clearIcon={{ color: "black" }}
         onChangeText={(text) => loadCities(text)}
         onClear={() => handleClear()}
@@ -60,7 +60,7 @@ export default function SearchCity() {
         }}
         inputContainerStyle={{
           borderRadius: 50,
-          backgroundColor: "#787878",
+          backgroundColor: "#EDEDED",
         }}
         inputStyle={{
           color: "black",
@@ -79,18 +79,19 @@ export default function SearchCity() {
                   padding: 20,
                   borderBottomWidth: 1,
                   borderBottomColor: "grey",
-                  justifyContent: "center",
+                  flexDirection: "row",
                 }}
                 onPress={() => handlePress(item)}
               >
                 <Text>{item.nom}</Text>
                 <Text
                   style={{
-                    right: 20,
-                    position: "absolute",
+                    textAlign: "left",
+                    flex: 1,
                   }}
                 >
-                  {item.codeDepartement}
+                  {" "}
+                  ({item.codeDepartement})
                 </Text>
               </TouchableOpacity>
             ) : (

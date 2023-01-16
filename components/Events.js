@@ -76,7 +76,7 @@ export default function Events({ navigation }) {
             style={styles.iconShare}
             onPress={() => shareEvent(item)}
           >
-            <Ionicons name="share-outline" size={32} color="white" />
+            <Ionicons name="share-outline" size={32} color="black" />
           </TouchableOpacity>
           <Text style={styles.status}>{calculItemStatus(item)}</Text>
           <Text style={styles.title}>{item.name}</Text>
@@ -87,20 +87,34 @@ export default function Events({ navigation }) {
             onPress={() => {
               redirectToWebsite(item);
             }}
+            activeOpacity={0.7}
           >
-            <Text>Website</Text>
+            <Text
+              style={{
+                color: "white",
+              }}
+            >
+              Site web
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => addEventToFavorites(item)}
-            activeOpacity={1}
-            style={styles.iconFavorite}
-          >
-            {isFavorite(item) ? (
-              <Ionicons name="star" size={84} color="white" />
-            ) : (
+
+          {isFavorite(item) ? (
+            <TouchableOpacity
+              onPress={() => addEventToFavorites(item)}
+              activeOpacity={1}
+              style={styles.iconFavorite}
+            >
               <Ionicons name="star-outline" size={84} color="white" />
-            )}
-          </TouchableOpacity>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={() => addEventToFavorites(item)}
+              activeOpacity={1}
+              style={styles.iconNotFavorite}
+            >
+              <Ionicons name="star-outline" size={84} color="white" />
+            </TouchableOpacity>
+          )}
         </View>
       )
     );
@@ -145,26 +159,24 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 100,
-    position: "relative",
     top: 10,
-    alignSelf: "center",
   },
   iconFavorite: {
-    alignSelf: "center",
     borderRadius: 100,
-    backgroundColor: "#8F8F8F",
-    top: 30,
+    backgroundColor: "#4C729E",
+    top: 20,
   },
-  icon: {
-    fontSize: 30,
-    color: "white",
+  iconNotFavorite: {
+    borderRadius: 100,
+    backgroundColor: "#363636",
+    top: 20,
   },
   iconShare: {
     alignSelf: "flex-end",
     bottom: 35,
     right: 35,
     borderRadius: 100,
-    backgroundColor: "#8F8F8F",
+    backgroundColor: "#F3F0E9",
   },
   eventsList: {
     marginLeft: 10,
@@ -174,7 +186,7 @@ const styles = StyleSheet.create({
     width: 237,
     height: 492,
     borderRadius: 145,
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#E1E7EE",
     marginRight: 40,
   },
   title: {
@@ -182,14 +194,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginVertical: 10,
+    height: 45,
   },
   category: {
     textAlign: "center",
     fontSize: 15,
-    backgroundColor: "#8F8F8F",
+    backgroundColor: "#DFDFDF",
     borderRadius: 20,
     paddingHorizontal: 20,
-    marginVertical: 10,
+    marginBottom: 10,
   },
   status: {
     textAlign: "center",
@@ -201,13 +214,14 @@ const styles = StyleSheet.create({
   },
   description: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 12,
+    height: 45,
   },
   websiteButton: {
     textAlign: "center",
-    backgroundColor: "#8F8F8F",
+    backgroundColor: "#4C729E",
     borderRadius: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 25,
     marginTop: 20,
   },
   filtres: {

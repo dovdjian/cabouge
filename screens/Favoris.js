@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { windowWidth } from "../const";
+import { windowHeight, windowWidth } from "../const";
 import { EventsContext } from "../contexts/EventsContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FlatList } from "react-native-gesture-handler";
@@ -54,11 +54,9 @@ export default function Favoris({ navigation }) {
               style={{
                 width: 350,
                 height: 186,
-                // force alignSelf to center
                 alignSelf: "center",
-                flex: 1,
                 borderRadius: 20,
-                marginBottom: 10,
+                marginVertical: 10,
               }}
             />
           </TouchableOpacity>
@@ -73,16 +71,16 @@ export default function Favoris({ navigation }) {
             activeOpacity={1}
             style={styles.iconFavorite}
           >
-            <Ionicons name="star" size={46} color="white" />
+            <Ionicons name="star-outline" size={46} color="white" />
           </TouchableOpacity>
           <Text style={styles.status}>{calculItemStatus(item)}</Text>
           <Text style={styles.title}>{item.name}</Text>
           <Text
             style={{
-              textAlign: "center",
+              left: 23,
             }}
           >
-            {item.lieu.ville} {item.lieu.code_postal}
+            {item.lieu.ville + " (" + item.lieu.code_postal + ")"}
           </Text>
           <Text style={styles.category}>{item.category}</Text>
         </View>
@@ -97,17 +95,14 @@ export default function Favoris({ navigation }) {
   useEffect(() => {
     getData().then((data) => {
       if (data) {
-        console.log("data == ", data);
         setFavorites(data);
       }
     });
   }, []);
 
   useEffect(() => {
-    console.log("Home");
     // reload when coming back from other screens
     navigation.addListener("focus", () => {
-      console.log("Home focus");
       setEventInfos({});
       setEventIndex(0);
       setSelectedCityCodeDep("");
@@ -115,10 +110,14 @@ export default function Favoris({ navigation }) {
   }, [setEventInfos, setEventIndex, setSelectedCityCodeDep]);
 
   return (
-    <View style={{ backgroundColor: "white" }}>
+    <View style={{ backgroundColor: "white", top: 50 }}>
       <SearchCity />
-      <ChooseDate />
-      <FlatList data={favorites} renderItem={renderItem} />
+      <FlatList
+        data={favorites}
+        renderItem={renderItem}
+        flexGrow={0.1}
+        minHeight={windowHeight - 130}
+      />
     </View>
   );
 }
@@ -142,12 +141,12 @@ const styles = StyleSheet.create({
     top: 75,
     right: 20,
     borderRadius: 100,
-    backgroundColor: "#8F8F8F",
+    backgroundColor: "#4C729E",
     marginRight: 5,
   },
   status: {
     position: "absolute",
-    top: 165,
+    bottom: 115,
     right: 30,
     textAlign: "center",
     fontSize: 10,
@@ -157,18 +156,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   title: {
-    textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
-    marginVertical: 10,
+    marginTop: 10,
+    marginBottom: 5,
+    left: 23,
   },
   category: {
-    alignSelf: "center",
-    textAlign: "center",
+    alignSelf: "flex-start",
     fontSize: 15,
     backgroundColor: "#8F8F8F",
     borderRadius: 20,
     paddingHorizontal: 20,
     marginVertical: 10,
+    left: 23,
   },
 });

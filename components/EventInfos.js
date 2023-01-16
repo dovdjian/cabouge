@@ -30,7 +30,7 @@ export default function EventInfos(props) {
       <View style={styles.modal}>
         <TouchableOpacity
           onPress={() => setModalVisible(false)}
-          style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}
+          style={{ zIndex: 1 }}
         >
           <Ionicons name="arrow-back-outline" size={39} />
         </TouchableOpacity>
@@ -40,22 +40,34 @@ export default function EventInfos(props) {
             style={styles.imageInModal}
           />
         </View>
-        <TouchableOpacity
-          onPress={() => addEventToFavorites(props.item)}
-          activeOpacity={1}
-          style={styles.iconFavorite}
-        >
-          {isFavorite(props.item) ? (
-            <Ionicons name="star" size={65} color="white" />
-          ) : (
+        {isFavorite(props.item) ? (
+          <TouchableOpacity
+            onPress={() => addEventToFavorites(props.item)}
+            activeOpacity={1}
+            style={styles.iconFavorite}
+          >
             <Ionicons name="star-outline" size={65} color="white" />
-          )}
-        </TouchableOpacity>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => addEventToFavorites(props.item)}
+            activeOpacity={1}
+            style={styles.iconNotFavorite}
+          >
+            <Ionicons name="star-outline" size={65} color="white" />
+          </TouchableOpacity>
+        )}
         <View style={styles.eventContainer}>
           <View style={styles.nameContainer}>
             <Text style={styles.title}>{props.item.name}</Text>
-            <TouchableOpacity onPress={() => shareEvent(props.item)}>
-              <Ionicons name="share-outline" size={32} color="black" />
+            <TouchableOpacity
+              style={{
+                alignSelf: "center",
+                marginLeft: 10,
+              }}
+              onPress={() => shareEvent(props.item)}
+            >
+              <Ionicons name="share-outline" size={24} color="black" />
             </TouchableOpacity>
           </View>
           <Text style={styles.category}>{props.item.category}</Text>
@@ -74,8 +86,9 @@ export default function EventInfos(props) {
             onPress={() => {
               redirectToWebsite(props.item);
             }}
+            activeOpacity={0.7}
           >
-            <Text>Website</Text>
+            <Text>Site web</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -86,54 +99,60 @@ export default function EventInfos(props) {
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
-    marginTop: 37,
     left: 10,
   },
   imageContainer: {
-    backgroundColor: "#4C729E",
+    backgroundColor: "#E1E7EE",
     width: 358,
     height: 358,
     borderRadius: 179,
     justifyContent: "center",
+    bottom: 20,
   },
   imageInModal: {
     width: 310,
     height: 310,
     borderRadius: 155,
-    position: "relative",
     alignSelf: "center",
   },
   iconFavorite: {
     alignSelf: "flex-end",
-    bottom: 85,
-    right: 15,
+    bottom: 90,
+    right: 30,
     borderRadius: 100,
-    backgroundColor: "#8F8F8F",
+    backgroundColor: "#4C729E",
+  },
+  iconNotFavorite: {
+    alignSelf: "flex-end",
+    bottom: 90,
+    right: 30,
+    borderRadius: 100,
+    backgroundColor: "#363636",
   },
   eventContainer: {
-    bottom: 60,
+    bottom: 80,
   },
   nameContainer: {
     flexDirection: "row",
-    left: 10,
+    flexWrap: "wrap",
   },
   title: {
     fontSize: 18,
     marginVertical: 10,
+    fontWeight: "bold",
   },
   category: {
     right: 10,
     alignSelf: "center",
     fontSize: 15,
-    backgroundColor: "#8F8F8F",
+    backgroundColor: "#E1E7EE",
     borderRadius: 20,
     paddingHorizontal: 20,
     marginVertical: 10,
   },
   websiteButton: {
-    textAlign: "center",
     alignSelf: "center",
-    backgroundColor: "#8F8F8F",
+    backgroundColor: "#E1E7EE",
     borderRadius: 20,
     paddingHorizontal: 20,
     marginTop: 20,
@@ -141,8 +160,6 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 15,
-    textAlign: "center",
-    right: 27,
   },
   date: {
     fontSize: 15,

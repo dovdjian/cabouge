@@ -17,10 +17,8 @@ export default function Home({ navigation }) {
   } = useContext(EventsContext);
 
   useEffect(() => {
-    console.log("Home");
     // reload when coming back from other screens
     navigation.addListener("focus", () => {
-      console.log("Home focus");
       setEventInfos({});
       setEventIndex(0);
       setSelectedCityCodeDep("");
@@ -33,8 +31,6 @@ export default function Home({ navigation }) {
       <View>
         <Text style={{ fontSize: 20, margin: 10 }}>Que faire ?</Text>
       </View>
-      {/*       <Filtres />
-       */}
       <ChooseDate />
       <Events />
     </View>
@@ -45,6 +41,7 @@ const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
     backgroundColor: "white",
+    top: 50,
   },
   searchBar: {},
 });
