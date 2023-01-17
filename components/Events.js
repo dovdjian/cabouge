@@ -211,6 +211,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#050505",
     paddingHorizontal: 10,
+    bottom: 15,
   },
   description: {
     textAlign: "center",

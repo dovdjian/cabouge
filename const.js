@@ -47,7 +47,7 @@ export const eventsData = [
     id: 2,
     name: "Pourquoi sauvegarder les vaches bretonnes ?",
     date_start: "2023-01-22",
-    date_end: "2023-01-22",
+    date_end: "",
     lieu: {
       ville: "Rennes",
       adresse: "Ecomusée de la Bintinais",
@@ -85,7 +85,7 @@ export const eventsData = [
     id: 4,
     name: "La nuit du blues",
     date_start: "2023-01-21",
-    date_end: "2023-01-21",
+    date_end: "",
     lieu: {
       ville: "Rennes",
       adresse: "123 Boulevard de Verdun",
@@ -93,11 +93,87 @@ export const eventsData = [
       codeDepartement: "35",
     },
     description:
-      "La 1ere édition de la nuit du Blues aura lieu à la Maison Blues (Bleue). L'association aura le plaisir d'organiser un plateau artistique accueillant -Bo Weavil Combo, -Lazy Buddies, -Nico Wayne Toussaint",
+      "La 1ere édition de la nuit du Blues aura lieu à la Maison Blues (Bleue).",
     category: "Concert",
     price: 20,
     download_url:
       "http://lamaisonbleuerennes.fr/wp-content/uploads/2022/11/NUIT-DU-BLUESbanniere-e1667984617129.png",
     website: "http://lamaisonbleuerennes.fr/evenement-la-nuit-du-blues/",
+  },
+  {
+    id: 5,
+    name: "Texture Crew",
+    date_start: "2023-01-21",
+    date_end: "",
+    lieu: {
+      ville: "Rennes",
+      adresse: "20 Rue Vasselot",
+      code_postal: "35000",
+      codeDepartement: "35",
+    },
+    description:
+      "Après une fin d’année au chaud, le Texture Crew est de retour, pour vous ambiancer le temps d’une soirée.",
+    category: "Concert",
+    price: 0,
+    download_url:
+      "https://scontent-cdt1-1.xx.fbcdn.net/v/t39.30808-6/324624082_2084434511749007_6943076789843916374_n.jpg?stp=dst-jpg_s960x960&_nc_cat=106&ccb=1-7&_nc_sid=340051&_nc_ohc=u_zJqO8MZUwAX9LC5Ek&_nc_ht=scontent-cdt1-1.xx&oh=00_AfB3A02EYSRoHuspuitWzMtpwAuweZrctnstp98u_cE_Bw&oe=63CB9CBB",
+    website: "http://lesparadisperdus.fr/",
+  },
+  {
+    id: 6,
+    name: "Vernissage exposition photographique Goodwood Revival",
+    date_start: "2023-01-21",
+    date_end: "",
+    lieu: {
+      ville: "Rennes",
+      adresse: "59 Rue Papu",
+      code_postal: "35000",
+      codeDepartement: "35",
+    },
+    description:
+      "Je vous invite à découvrir l'exposition photographique Goodwood Revival",
+    category: "Exposition",
+    price: 0,
+    download_url:
+      "https://scontent-cdt1-1.xx.fbcdn.net/v/t39.30808-6/324499344_650388926775099_5855722870993432582_n.jpg?stp=dst-jpg_s960x960&_nc_cat=109&ccb=1-7&_nc_sid=340051&_nc_ohc=W8wW1KD6A1sAX9vbOUF&_nc_ht=scontent-cdt1-1.xx&oh=00_AfCQipfjrZJNyDZcbxii6bzPY_xIN5uEbJpDkHELpfPTPw&oe=63CAB95D",
+    website:
+      "https://allevents.in/rennes/vernissage-exposition-photographique-goodwood-revival/200023917154248?ref=eventlist-new-nearby",
+  },
+  {
+    id: 7,
+    name: "Family brunch",
+    date_start: "2023-01-22",
+    date_end: "",
+    lieu: {
+      ville: "Rennes",
+      adresse: "103 boulevard marechal de lattre de tassigny",
+      code_postal: "35000",
+      codeDepartement: "35",
+    },
+    description:
+      "Venez passer un moment aussi gourmand que convivial et rencontrer d'autres anglophones. Mais attention, chez Aux Beaux Parleurs, notre truc ce sont les ateliers en langues étrangères.",
+    category: "Nourriture",
+    price: 16,
+    download_url:
+      "https://scontent-cdt1-1.xx.fbcdn.net/v/t39.30808-6/325938378_1592586087840132_5842476606458394848_n.jpg?stp=dst-jpg_p180x540&_nc_cat=106&ccb=1-7&_nc_sid=340051&_nc_ohc=Gmd45Hl3Y-QAX856vgM&_nc_ht=scontent-cdt1-1.xx&oh=00_AfDrqL-C8iuananFYjmSwixVEuUhxBXXIZjDyLROeXO01g&oe=63CC4C00",
+    website: "https://www.auxbeauxparleurs.com/event-details/familly-brunch",
+  },
+  {
+    id: 8,
+    name: "After work gare rennes",
+    date_start: "2023-01-10",
+    date_end: "2023-01-24",
+    lieu: {
+      ville: "Rennes",
+      adresse: "20 Rue Vasselot",
+      code_postal: "35000",
+      codeDepartement: "35",
+    },
+    description: "Bar de nuit ouvert 6j/7 de 17:00 à 3:00 pas de tarif de nuit",
+    category: "Bar",
+    price: 0,
+    download_url:
+      "https://scontent-cdt1-1.xx.fbcdn.net/v/t39.30808-6/325938378_1592586087840132_5842476606458394848_n.jpg?stp=dst-jpg_p180x540&_nc_cat=106&ccb=1-7&_nc_sid=340051&_nc_ohc=Gmd45Hl3Y-QAX856vgM&_nc_ht=scontent-cdt1-1.xx&oh=00_AfDrqL-C8iuananFYjmSwixVEuUhxBXXIZjDyLROeXO01g&oe=63CC4C00",
+    website: "",
   },
 ];

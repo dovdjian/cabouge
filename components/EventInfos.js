@@ -72,8 +72,8 @@ export default function EventInfos(props) {
           </View>
           <Text style={styles.category}>{props.item.category}</Text>
           <Text style={styles.date}>
-            {convertDate(props.item.date_start)} -{" "}
-            {convertDate(props.item.date_end)}
+            {convertDate(props.item.date_start)}{" "}
+            {props.item.date_end ? "-" : ""} {convertDate(props.item.date_end)}
           </Text>
           <Text style={styles.description}> {props.item.description}</Text>
           <View style={styles.locationContainer}>
@@ -117,15 +117,15 @@ const styles = StyleSheet.create({
   },
   iconFavorite: {
     alignSelf: "flex-end",
-    bottom: 90,
-    right: 30,
+    bottom: 100,
+    right: 40,
     borderRadius: 100,
     backgroundColor: "#4C729E",
   },
   iconNotFavorite: {
     alignSelf: "flex-end",
-    bottom: 90,
-    right: 30,
+    bottom: 100,
+    right: 40,
     borderRadius: 100,
     backgroundColor: "#363636",
   },

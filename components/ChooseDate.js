@@ -17,6 +17,7 @@ export default function ChooseDate() {
     setConfirmDate(false);
     setDisplayCalendar(false);
     setChooseDate(day);
+    console.log("chooseDate", chooseDate);
   };
 
   const handleCloseCalendar = () => {
@@ -32,6 +33,12 @@ export default function ChooseDate() {
         setConfirmDate(!confirmDate);
       }}
       enableSwipeMonths={true}
+      markedDates={{
+        [`${tempDate.year}-${tempDate.month}-${tempDate.day}`]: {
+          selected: true,
+          selectedColor: "blue",
+        },
+      }}
       renderHeader={(date) => {
         return (
           <View>
