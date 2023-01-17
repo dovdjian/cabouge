@@ -48,7 +48,7 @@ export default function SearchCity() {
       <SearchBar
         placeholder="Trouver une ville..."
         placeholderTextColor={"#787878"}
-        searchIcon={{ color: "#4C729E" }}
+        searchIcon={{ color: "#4C729E", size: 24 }}
         clearIcon={{ color: "black" }}
         onChangeText={(text) => loadCities(text)}
         onClear={() => handleClear()}

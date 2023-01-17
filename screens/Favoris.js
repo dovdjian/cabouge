@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 10,
     color: "white",
-    borderRadius: 10,
     backgroundColor: "#050505",
     paddingHorizontal: 10,
   },

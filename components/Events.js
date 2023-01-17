@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 20,
     marginBottom: 10,
+    border: "1px solid white",
   },
   status: {
     textAlign: "center",
@@ -212,6 +213,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#050505",
     paddingHorizontal: 10,
     bottom: 15,
+    border: "1px solid white",
   },
   description: {
     textAlign: "center",
@@ -220,7 +222,7 @@ const styles = StyleSheet.create({
   },
   websiteButton: {
     textAlign: "center",
-    backgroundColor: "#4C729E",
+    backgroundColor: "black",
     borderRadius: 20,
     paddingHorizontal: 25,
     marginTop: 20,
