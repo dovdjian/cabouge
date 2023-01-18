@@ -72,14 +72,21 @@ export default function EventInfos(props) {
           </View>
           <Text style={styles.category}>{props.item.category}</Text>
           <Text style={styles.date}>
-            {convertDate(props.item.date_start)}{" "}
-            {props.item.date_end ? "-" : ""} {convertDate(props.item.date_end)}
+            {convertDate(props.item.date_start)}
+            {props.item.date_end ? " -" : ""} {convertDate(props.item.date_end)}
+            {" de " + props.item.hour_start + " à " + props.item.hour_end}
           </Text>
           <Text style={styles.description}> {props.item.description}</Text>
+          <Text style={styles.price}>
+            {" "}
+            Prix: {props.item.price ? props.item.price : "Gratuit"}
+          </Text>
           <View style={styles.locationContainer}>
             <Text> {props.item.lieu?.adresse} </Text>
-            <Text> {props.item.lieu?.code_postal} </Text>
-            <Text> {props.item.lieu?.ville} </Text>
+            <Text>
+              {" "}
+              {props.item.lieu?.code_postal + ", " + props.item.lieu?.ville}
+            </Text>
           </View>
           <TouchableOpacity
             style={styles.websiteButton}
@@ -88,7 +95,7 @@ export default function EventInfos(props) {
             }}
             activeOpacity={0.7}
           >
-            <Text>Site web</Text>
+            <Text style={{ color: "white" }}>Site web</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -99,7 +106,7 @@ export default function EventInfos(props) {
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
-    left: 10,
+    left: 20,
   },
   imageContainer: {
     backgroundColor: "#E1E7EE",
@@ -142,31 +149,38 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   category: {
-    right: 10,
-    alignSelf: "center",
+    alignSelf: "flex-start",
     fontSize: 15,
-    backgroundColor: "#E1E7EE",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "#ACACAC",
     borderRadius: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginVertical: 10,
   },
   websiteButton: {
     alignSelf: "center",
-    backgroundColor: "#E1E7EE",
+    backgroundColor: "#4C729E",
     borderRadius: 20,
     paddingHorizontal: 20,
     marginTop: 20,
-    right: 10,
+    right: 20,
   },
   description: {
     fontSize: 15,
   },
-  date: {
+  price: {
     fontSize: 15,
+    fontWeight: "bold",
+    marginTop: 10,
+  },
+  date: {
+    fontSize: 13,
+    fontWeight: "italic",
     marginVertical: 10,
     left: 2,
   },
   locationContainer: {
-    marginTop: 20,
+    marginTop: 10,
   },
 });

@@ -10,6 +10,8 @@ export const eventsData = [
     name: "Magnétique",
     date_start: "2022-09-20",
     date_end: "2023-03-05",
+    hour_start: "12:00",
+    hour_end: "19:00",
     lieu: {
       ville: "Rennes",
       adresse: "Espace des Sciences",
@@ -29,6 +31,8 @@ export const eventsData = [
     name: "15ème semaine du cinéma britannique",
     date_start: "2023-01-14",
     date_end: "2023-01-21",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Bruz",
       adresse: "10 Avenue du Général de Gaulle",
@@ -48,6 +52,8 @@ export const eventsData = [
     name: "Pourquoi sauvegarder les vaches bretonnes ?",
     date_start: "2023-01-22",
     date_end: "",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Rennes",
       adresse: "Ecomusée de la Bintinais",
@@ -67,6 +73,8 @@ export const eventsData = [
     name: "Festival autres mesures",
     date_start: "2023-01-22",
     date_end: "2023-02-05",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Rennes",
       adresse: "Multisites",
@@ -86,6 +94,8 @@ export const eventsData = [
     name: "La nuit du blues",
     date_start: "2023-01-21",
     date_end: "",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Rennes",
       adresse: "123 Boulevard de Verdun",
@@ -105,6 +115,8 @@ export const eventsData = [
     name: "Texture Crew",
     date_start: "2023-01-21",
     date_end: "",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Rennes",
       adresse: "20 Rue Vasselot",
@@ -124,6 +136,8 @@ export const eventsData = [
     name: "Vernissage exposition photographique Goodwood Revival",
     date_start: "2023-01-21",
     date_end: "",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Rennes",
       adresse: "59 Rue Papu",
@@ -144,6 +158,8 @@ export const eventsData = [
     name: "Family brunch",
     date_start: "2023-01-22",
     date_end: "",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Rennes",
       adresse: "103 boulevard marechal de lattre de tassigny",
@@ -163,6 +179,8 @@ export const eventsData = [
     name: "After work gare rennes",
     date_start: "2023-01-10",
     date_end: "2023-01-24",
+    hour_start: "10:00",
+    hour_end: "18:00",
     lieu: {
       ville: "Rennes",
       adresse: "20 Rue Vasselot",

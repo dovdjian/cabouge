@@ -179,12 +179,12 @@ const styles = StyleSheet.create({
   iconFavorite: {
     borderRadius: 100,
     backgroundColor: "#4C729E",
-    top: 20,
+    top: 40,
   },
   iconNotFavorite: {
     borderRadius: 100,
     backgroundColor: "#363636",
-    top: 20,
+    top: 40,
   },
   iconShare: {
     alignSelf: "flex-end",
@@ -203,12 +203,19 @@ const styles = StyleSheet.create({
     borderRadius: 145,
     backgroundColor: "#E1E7EE",
     marginRight: 40,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4.84,
+    elevation: 5,
   },
   title: {
     textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
-    marginVertical: 10,
     height: 45,
   },
   category: {
@@ -218,7 +225,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 20,
     marginBottom: 10,
-    border: "1px solid white",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "white",
   },
   status: {
     textAlign: "center",
@@ -237,7 +246,7 @@ const styles = StyleSheet.create({
   },
   websiteButton: {
     textAlign: "center",
-    backgroundColor: "black",
+    backgroundColor: "#4C729E",
     borderRadius: 20,
     paddingHorizontal: 25,
     marginTop: 20,

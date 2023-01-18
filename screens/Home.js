@@ -29,7 +29,7 @@ export default function Home({ navigation }) {
     <View style={styles.homeContainer}>
       <SearchCity />
       <View>
-        <Text style={{ fontSize: 32, margin: 10 }}>Que faire ?</Text>
+        <Text style={{ fontSize: 32, marginLeft: 10 }}>Que faire ?</Text>
       </View>
       <ChooseDate />
       <Events />
