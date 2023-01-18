@@ -23,6 +23,7 @@ export const EventsProvider = ({ children }) => {
   ]);
   const flatListRef = useRef(null);
   const [selectedCityCodeDep, setSelectedCityCodeDep] = useState("");
+  const [chooseDate, setChooseDate] = useState({});
 
   const addEventToFavorites = (item) => {
     const index = favorites.findIndex((favorite) => favorite.id === item.id);
@@ -100,6 +101,8 @@ export const EventsProvider = ({ children }) => {
         setEventInfos,
         eventIndex,
         setEventIndex,
+        chooseDate,
+        setChooseDate,
         flatListRef,
         selectedCityCodeDep,
         setSelectedCityCodeDep,

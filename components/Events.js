@@ -37,6 +37,7 @@ export default function Events({ navigation }) {
     shareEvent,
     redirectToWebsite,
     calculItemStatus,
+    chooseDate,
   } = useContext(EventsContext);
 
   /* const loadList = async () => {
@@ -51,6 +52,19 @@ export default function Events({ navigation }) {
     loadList();
   }, []); */
 
+  const eventIsInRangeDate = (date, item) => {
+    let dateStart = Object.keys(date)[0];
+    let dateEnd = Object.keys(date)[Object.keys(date).length - 1];
+
+    if (dateStart === undefined && dateEnd === undefined) return true;
+
+    if (item.date_end !== "") {
+      return item.date_start <= dateEnd && item.date_end >= dateStart;
+    } else {
+      return item.date_start >= dateStart && item.date_start <= dateEnd;
+    }
+  };
+
   const handleReturn = (id) => {
     const index = events.findIndex((item) => item.id === id);
     if (flatListRef.current)
@@ -64,7 +78,8 @@ export default function Events({ navigation }) {
     return (
       ((item.lieu.codeDepartement === selectedCityCodeDep &&
         selectedCityCodeDep !== "") ||
-        selectedCityCodeDep === "") && (
+        selectedCityCodeDep === "") &&
+      eventIsInRangeDate(chooseDate, item) && (
         <View style={styles.eventContainer}>
           <TouchableOpacity onPress={() => renderModal(item)} activeOpacity={1}>
             <Image
