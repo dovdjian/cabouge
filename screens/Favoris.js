@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   status: {
     position: "absolute",
-    bottom: 115,
+    bottom: 120,
     right: 30,
     textAlign: "center",
     fontSize: 10,
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#050505",
     paddingHorizontal: 10,
     fontFamily: "Questrial",
+    borderRadius: 20,
   },
   title: {
     fontSize: 18,
