@@ -8,10 +8,11 @@ import { EventsContext } from "../contexts/EventsContext";
 export default function ChooseDate() {
   const [displayCalendar, setDisplayCalendar] = useState(false);
   const [markedDates, setMarkedDates] = useState({});
-  const [isStartDatePicked, setIsStartDatePicked] = useState(false);
   const [startDate, setStartDate] = useState("");
 
-  const { chooseDate, setChooseDate } = useContext(EventsContext);
+  const [isEndDatePicked, setIsEndDatePicked] = useState(false);
+  const { chooseDate, setChooseDate, isStartDatePicked, setIsStartDatePicked } =
+    useContext(EventsContext);
 
   const handleConfirmDate = (chooseDate) => {
     setDisplayCalendar(false);
@@ -84,9 +85,17 @@ export default function ChooseDate() {
           }
         }
         setMarkedDates(newMarkedDates);
+        setIsEndDatePicked(true);
         setStartDate("");
       } else {
-        alert("Select an upcomming date!");
+        // TODO: reset markedDates if the user select a date when a range is already selected
+        if (isEndDatePicked) {
+          // set marked dates with the new date
+
+          setMarkedDates({});
+          setIsStartDatePicked(false);
+          setIsEndDatePicked(false);
+        } else alert("Select an upcomming date!");
       }
     }
   };

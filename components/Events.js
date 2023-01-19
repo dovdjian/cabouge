@@ -39,6 +39,7 @@ export default function Events({ navigation }) {
     redirectToWebsite,
     calculItemStatus,
     chooseDate,
+    isStartDatePicked,
   } = useContext(EventsContext);
 
   /* const loadList = async () => {
@@ -56,7 +57,7 @@ export default function Events({ navigation }) {
   const eventIsInRangeDate = (date, item) => {
     let dateStart = Object.keys(date)[0];
     let dateEnd = Object.keys(date)[Object.keys(date).length - 1];
-
+    if (isStartDatePicked === false) return true;
     if (dateStart === undefined && dateEnd === undefined) return true;
 
     if (item.date_end !== "") {
@@ -219,6 +220,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Questrial",
     height: 45,
+    bottom: 7,
   },
   category: {
     textAlign: "center",

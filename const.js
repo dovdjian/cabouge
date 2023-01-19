@@ -133,7 +133,7 @@ export const eventsData = [
   },
   {
     id: 6,
-    name: "Vernissage exposition photographique Goodwood Revival",
+    name: "Vernissage exposition photographique",
     date_start: "2023-01-21",
     date_end: "",
     hour_start: "10:00",
@@ -173,25 +173,5 @@ export const eventsData = [
     download_url:
       "https://scontent-cdt1-1.xx.fbcdn.net/v/t39.30808-6/325938378_1592586087840132_5842476606458394848_n.jpg?stp=dst-jpg_p180x540&_nc_cat=106&ccb=1-7&_nc_sid=340051&_nc_ohc=Gmd45Hl3Y-QAX856vgM&_nc_ht=scontent-cdt1-1.xx&oh=00_AfDrqL-C8iuananFYjmSwixVEuUhxBXXIZjDyLROeXO01g&oe=63CC4C00",
     website: "https://www.auxbeauxparleurs.com/event-details/familly-brunch",
-  },
-  {
-    id: 8,
-    name: "After work gare rennes",
-    date_start: "2023-01-10",
-    date_end: "2023-01-24",
-    hour_start: "10:00",
-    hour_end: "18:00",
-    lieu: {
-      ville: "Rennes",
-      adresse: "20 Rue Vasselot",
-      code_postal: "35000",
-      codeDepartement: "35",
-    },
-    description: "Bar de nuit ouvert 6j/7 de 17:00 à 3:00 pas de tarif de nuit",
-    category: "Bar",
-    price: 0,
-    download_url:
-      "https://scontent-cdt1-1.xx.fbcdn.net/v/t39.30808-6/325938378_1592586087840132_5842476606458394848_n.jpg?stp=dst-jpg_p180x540&_nc_cat=106&ccb=1-7&_nc_sid=340051&_nc_ohc=Gmd45Hl3Y-QAX856vgM&_nc_ht=scontent-cdt1-1.xx&oh=00_AfDrqL-C8iuananFYjmSwixVEuUhxBXXIZjDyLROeXO01g&oe=63CC4C00",
-    website: "",
   },
 ];

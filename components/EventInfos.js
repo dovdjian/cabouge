@@ -31,7 +31,7 @@ export default function EventInfos(props) {
       <View style={styles.modal}>
         <TouchableOpacity
           onPress={() => setModalVisible(false)}
-          style={{ zIndex: 1 }}
+          style={{ zIndex: 1, right: 20 }}
         >
           <Ionicons name="arrow-back-outline" size={39} />
         </TouchableOpacity>
@@ -47,7 +47,7 @@ export default function EventInfos(props) {
             activeOpacity={1}
             style={styles.iconFavorite}
           >
-            <Icon name="star" size={84} color="white" />
+            <Icon name="star" size={75} color="white" />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -55,7 +55,7 @@ export default function EventInfos(props) {
             activeOpacity={1}
             style={styles.iconNotFavorite}
           >
-            <Icon name="star-outline" size={84} color="white" />
+            <Icon name="star-outline" size={75} color="white" />
           </TouchableOpacity>
         )}
         <View style={styles.eventContainer}>
@@ -127,15 +127,15 @@ const styles = StyleSheet.create({
   },
   iconFavorite: {
     alignSelf: "flex-end",
-    bottom: 100,
-    right: 40,
+    bottom: 95,
+    right: 35,
     borderRadius: 100,
     backgroundColor: "#4C729E",
   },
   iconNotFavorite: {
     alignSelf: "flex-end",
-    bottom: 100,
-    right: 40,
+    bottom: 95,
+    right: 35,
     borderRadius: 100,
     backgroundColor: "#363636",
   },
