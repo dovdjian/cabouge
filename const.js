@@ -167,7 +167,7 @@ export const eventsData = [
       codeDepartement: "35",
     },
     description:
-      "Venez passer un moment aussi gourmand que convivial et rencontrer d'autres anglophones. Mais attention, chez Aux Beaux Parleurs, notre truc ce sont les ateliers en langues étrangères.",
+      "Venez passer un moment aussi gourmand que convivial et rencontrer d'autres anglophones.",
     category: "Nourriture",
     price: 16,
     download_url:

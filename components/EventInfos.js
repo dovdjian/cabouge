@@ -2,6 +2,7 @@ import { useContext, useRef } from "react";
 import { Image, Text } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Modal, StyleSheet, View } from "react-native";
+import { Icon } from "react-native-elements";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { EventsContext } from "../contexts/EventsContext";
 
@@ -46,7 +47,7 @@ export default function EventInfos(props) {
             activeOpacity={1}
             style={styles.iconFavorite}
           >
-            <Ionicons name="star-outline" size={65} color="white" />
+            <Icon name="star" size={84} color="white" />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -54,7 +55,7 @@ export default function EventInfos(props) {
             activeOpacity={1}
             style={styles.iconNotFavorite}
           >
-            <Ionicons name="star-outline" size={65} color="white" />
+            <Icon name="star-outline" size={84} color="white" />
           </TouchableOpacity>
         )}
         <View style={styles.eventContainer}>
@@ -79,7 +80,7 @@ export default function EventInfos(props) {
           <Text style={styles.description}> {props.item.description}</Text>
           <Text style={styles.price}>
             {" "}
-            Prix: {props.item.price ? props.item.price : "Gratuit"}
+            Prix: {props.item.price ? props.item.price + "€" : "Gratuit"}
           </Text>
           <View style={styles.locationContainer}>
             <Text> {props.item.lieu?.adresse} </Text>
@@ -95,7 +96,9 @@ export default function EventInfos(props) {
             }}
             activeOpacity={0.7}
           >
-            <Text style={{ color: "white" }}>Site web</Text>
+            <Text style={{ color: "white", fontFamily: "Questrial" }}>
+              Site web
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -147,6 +150,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 10,
     fontWeight: "bold",
+    fontFamily: "Questrial",
   },
   category: {
     alignSelf: "flex-start",
@@ -157,6 +161,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 10,
     marginVertical: 10,
+    fontFamily: "Questrial",
   },
   websiteButton: {
     alignSelf: "center",
@@ -168,17 +173,20 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 15,
+    fontFamily: "Questrial",
   },
   price: {
     fontSize: 15,
     fontWeight: "bold",
     marginTop: 10,
+    fontFamily: "Questrial",
   },
   date: {
     fontSize: 13,
     fontWeight: "italic",
     marginVertical: 10,
     left: 2,
+    fontFamily: "Questrial",
   },
   locationContainer: {
     marginTop: 10,

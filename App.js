@@ -7,11 +7,19 @@ import Favoris from "./screens/Favoris";
 import Home from "./screens/Home";
 import Maps from "./screens/Maps";
 import Settings from "./screens/Settings";
+import { useFonts } from "expo-font";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [loaded] = useFonts({
+    Questrial: require("./assets/fonts/Questrial-Regular.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
   return (
     <EventsProvider>
       <NavigationContainer>

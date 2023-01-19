@@ -15,6 +15,7 @@ import { api, windowWidth } from "../const";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { EventsContext } from "../contexts/EventsContext";
 import EventInfos from "./EventInfos";
+import { Icon } from "react-native-elements";
 
 export default function Events({ navigation }) {
   //const flatListRef = useRef(null);
@@ -107,6 +108,7 @@ export default function Events({ navigation }) {
             <Text
               style={{
                 color: "white",
+                fontFamily: "Questrial",
               }}
             >
               Site web
@@ -119,7 +121,7 @@ export default function Events({ navigation }) {
               activeOpacity={1}
               style={styles.iconFavorite}
             >
-              <Ionicons name="star-outline" size={84} color="white" />
+              <Icon name="star" size={84} color="white" />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -127,7 +129,7 @@ export default function Events({ navigation }) {
               activeOpacity={1}
               style={styles.iconNotFavorite}
             >
-              <Ionicons name="star-outline" size={84} color="white" />
+              <Icon name="star-outline" size={84} color="white" />
             </TouchableOpacity>
           )}
         </View>
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "Questrial",
     height: 45,
   },
   category: {
@@ -228,6 +230,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: "white",
+    fontFamily: "Questrial",
   },
   status: {
     textAlign: "center",
@@ -238,11 +241,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     bottom: 15,
     border: "1px solid white",
+    fontFamily: "Questrial",
   },
   description: {
     textAlign: "center",
-    fontSize: 12,
+    fontSize: 11,
     height: 45,
+    fontFamily: "Questrial",
   },
   websiteButton: {
     textAlign: "center",

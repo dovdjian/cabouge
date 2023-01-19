@@ -88,6 +88,7 @@ export default function SearchCity() {
                   style={{
                     textAlign: "left",
                     flex: 1,
+                    fontFamily: "Questrial",
                   }}
                 >
                   {" "}

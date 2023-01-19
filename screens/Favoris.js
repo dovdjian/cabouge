@@ -9,6 +9,7 @@ import ChooseDate from "../components/ChooseDate";
 import EventInfos from "../components/EventInfos";
 import { TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { Icon } from "react-native-elements";
 
 export default function Favoris({ navigation }) {
   const {
@@ -71,7 +72,7 @@ export default function Favoris({ navigation }) {
             activeOpacity={1}
             style={styles.iconFavorite}
           >
-            <Ionicons name="star-outline" size={46} color="white" />
+            <Icon name="star" size={46} color="white" />
           </TouchableOpacity>
           <Text style={styles.status}>{calculItemStatus(item)}</Text>
           <Text style={styles.title}>{item.name}</Text>
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
     color: "white",
     backgroundColor: "#050505",
     paddingHorizontal: 10,
+    fontFamily: "Questrial",
   },
   title: {
     fontSize: 18,
@@ -160,6 +162,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     left: 23,
+    fontFamily: "Questrial",
   },
   category: {
     alignSelf: "flex-start",

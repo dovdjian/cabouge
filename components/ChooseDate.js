@@ -26,7 +26,7 @@ export default function ChooseDate() {
   };
 
   const handleCloseCalendar = () => {
-    setIsStartDatePicked(true);
+    setIsStartDatePicked(false);
     setDisplayCalendar(false);
     setMarkedDates({});
   };
@@ -124,9 +124,13 @@ export default function ChooseDate() {
       onPress={() => handleOpenCalendar()}
     >
       {isStartDatePicked ? (
-        <Text style={{ fontSize: 20 }}>{formatDate(chooseDate)}</Text>
+        <Text style={{ fontSize: 20, fontFamily: "Questrial" }}>
+          {formatDate(chooseDate)}
+        </Text>
       ) : (
-        <Text style={{ fontSize: 20 }}>Maintenant</Text>
+        <Text style={{ fontSize: 20, fontFamily: "Questrial" }}>
+          Maintenant
+        </Text>
       )}
       <Ionicons name="chevron-down-outline" size={24} style={{}} />
     </TouchableOpacity>
