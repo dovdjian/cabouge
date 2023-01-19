@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Modal, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { windowWidth } from "../const";
 import { EventsContext } from "../contexts/EventsContext";
 
 export default function EventInfos(props) {
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
     fontFamily: "Questrial",
   },
   category: {
+    textAlign: "center",
     alignSelf: "flex-start",
     fontSize: 15,
     borderStyle: "solid",
@@ -174,6 +176,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 15,
     fontFamily: "Questrial",
+    maxWidth: windowWidth - 20,
   },
   price: {
     fontSize: 15,

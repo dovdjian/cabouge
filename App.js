@@ -31,7 +31,7 @@ export default function App() {
               if (route.name === "Home") {
                 iconName = "home";
               } else if (route.name === "Favoris") {
-                iconName = "star-outline";
+                iconName = "star";
               } else if (route.name === "Maps") {
                 iconName = "location";
               } else if (route.name === "Settings") {

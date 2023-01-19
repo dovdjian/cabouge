@@ -82,18 +82,22 @@ export default function Events({ navigation }) {
         selectedCityCodeDep !== "") ||
         selectedCityCodeDep === "") &&
       eventIsInRangeDate(chooseDate, item) && (
-        <View style={styles.eventContainer}>
-          <TouchableOpacity onPress={() => renderModal(item)} activeOpacity={1}>
+        <TouchableOpacity
+          style={styles.eventContainer}
+          onPress={() => renderModal(item)}
+          activeOpacity={1}
+        >
+          <View>
             <Image
               source={{ uri: item.download_url }}
               style={styles.imageInModal}
             />
-          </TouchableOpacity>
+          </View>
           <TouchableOpacity
             style={styles.iconShare}
             onPress={() => shareEvent(item)}
           >
-            <Ionicons name="share-outline" size={32} color="black" />
+            <Ionicons name="share-outline" size={24} color="black" />
           </TouchableOpacity>
           <Text style={styles.status}>{calculItemStatus(item)}</Text>
           <Text style={styles.title}>{item.name}</Text>
@@ -133,7 +137,7 @@ export default function Events({ navigation }) {
               <Icon name="star-outline" size={84} color="white" />
             </TouchableOpacity>
           )}
-        </View>
+        </TouchableOpacity>
       )
     );
   };
@@ -191,10 +195,9 @@ const styles = StyleSheet.create({
   },
   iconShare: {
     alignSelf: "flex-end",
-    bottom: 35,
-    right: 35,
+    bottom: 25,
+    right: 25,
     borderRadius: 100,
-    backgroundColor: "#F3F0E9",
   },
   eventsList: {
     marginLeft: 10,
@@ -241,8 +244,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#050505",
     paddingHorizontal: 10,
-    bottom: 15,
-    border: "1px solid white",
+    bottom: 10,
     fontFamily: "Questrial",
   },
   description: {

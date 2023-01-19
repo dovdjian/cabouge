@@ -110,14 +110,17 @@ export default function ChooseDate() {
       markingType={"period"}
       renderHeader={(date) => {
         return (
-          <View>
+          <View style={{ flexDirection: "row" }}>
             <TouchableOpacity onPress={() => handleCloseCalendar()}>
               <Text>
                 {date.toString().substring(4, 7)} {date.getFullYear()}
               </Text>
             </TouchableOpacity>
             {isStartDatePicked ? (
-              <TouchableOpacity onPress={() => handleConfirmDate(markedDates)}>
+              <TouchableOpacity
+                onPress={() => handleConfirmDate(markedDates)}
+                style={{ marginLeft: 10 }}
+              >
                 <Ionicons name="checkmark-circle-outline" size={24} />
               </TouchableOpacity>
             ) : (
