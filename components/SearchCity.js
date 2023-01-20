@@ -49,7 +49,7 @@ export default function SearchCity() {
         placeholder="Trouver une ville..."
         placeholderTextColor={"#787878"}
         searchIcon={{ color: "#4C729E", size: 24 }}
-        clearIcon={{ color: "black" }}
+        clearIcon={{ color: "black", size: 24 }}
         onChangeText={(text) => loadCities(text)}
         onClear={() => handleClear()}
         value={search}
