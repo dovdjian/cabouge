@@ -21,7 +21,7 @@ export const eventsData = [
     description:
       "La nouvelle exposition temporaire de l’Espace des sciences explore les mystères du magnétisme.",
     category: "Exposition",
-    price: 0,
+    price: 6,
     download_url:
       "https://www.tourisme-rennes.com/uploads/2022/11/2022-magnetique-espace-des-sciences-16075.jpg",
     website: "https://www.espace-sciences.org/",
@@ -42,18 +42,18 @@ export const eventsData = [
     description:
       "Chaque année le Grand Logis organise sa semaine du cinéma britannique.",
     category: "Cinéma",
-    price: 10,
+    price: 13,
     download_url:
       "https://www.tourisme-rennes.com/uploads/2022/11/2023-semaine-du-cinema-britannique-16163.jpg",
     website: "https://legrandlogis-bruz.fr/semaine-du-cinema-britannique/",
   },
   {
     id: 2,
-    name: "Pourquoi sauvegarder les vaches bretonnes ?",
+    name: "Pourquoi sauvegarder les races bretonnes ?",
     date_start: "2023-01-22",
     date_end: "",
-    hour_start: "10:00",
-    hour_end: "18:00",
+    hour_start: "15:00",
+    hour_end: "20:00",
     lieu: {
       ville: "Rennes",
       adresse: "Ecomusée de la Bintinais",
@@ -73,8 +73,8 @@ export const eventsData = [
     name: "Festival autres mesures",
     date_start: "2023-01-22",
     date_end: "2023-02-05",
-    hour_start: "10:00",
-    hour_end: "18:00",
+    hour_start: "12:30",
+    hour_end: "23:30",
     lieu: {
       ville: "Rennes",
       adresse: "Multisites",
@@ -84,7 +84,7 @@ export const eventsData = [
     description:
       "Depuis 2015, le festival Autres Mesures s’est progressivement implanté dans le paysage des événements hivernaux de la ville de Rennes.",
     category: "Concert",
-    price: 20,
+    price: 0,
     download_url:
       "https://www.tourisme-rennes.com/uploads/2022/12/0f6ec0e0afdf232fad016b291140f406a2d4955e.jpeg",
     website: "https://autresmesures.com/",
@@ -94,8 +94,8 @@ export const eventsData = [
     name: "La nuit du blues",
     date_start: "2023-01-21",
     date_end: "",
-    hour_start: "10:00",
-    hour_end: "18:00",
+    hour_start: "20:00",
+    hour_end: "02:00",
     lieu: {
       ville: "Rennes",
       adresse: "123 Boulevard de Verdun",
@@ -115,8 +115,8 @@ export const eventsData = [
     name: "Texture Crew",
     date_start: "2023-01-21",
     date_end: "",
-    hour_start: "10:00",
-    hour_end: "18:00",
+    hour_start: "16:00",
+    hour_end: "01:00",
     lieu: {
       ville: "Rennes",
       adresse: "20 Rue Vasselot",
@@ -136,8 +136,8 @@ export const eventsData = [
     name: "Vernissage exposition photographique",
     date_start: "2023-01-21",
     date_end: "",
-    hour_start: "10:00",
-    hour_end: "18:00",
+    hour_start: "11:00",
+    hour_end: "12:15",
     lieu: {
       ville: "Rennes",
       adresse: "59 Rue Papu",
@@ -158,8 +158,8 @@ export const eventsData = [
     name: "Family brunch",
     date_start: "2023-01-22",
     date_end: "",
-    hour_start: "10:00",
-    hour_end: "18:00",
+    hour_start: "11:00",
+    hour_end: "15:00",
     lieu: {
       ville: "Rennes",
       adresse: "103 boulevard marechal de lattre de tassigny",
