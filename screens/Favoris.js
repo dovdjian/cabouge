@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { windowHeight, windowWidth } from "../const";
 import { EventsContext } from "../contexts/EventsContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FlatList } from "react-native-gesture-handler";
@@ -10,6 +9,7 @@ import EventInfos from "../components/EventInfos";
 import { TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Icon } from "react-native-elements";
+import { AppContext } from "../contexts/AppContext";
 
 export default function Favoris({ navigation }) {
   const {
@@ -25,6 +25,8 @@ export default function Favoris({ navigation }) {
     calculItemStatus,
     shareEvent,
   } = useContext(EventsContext);
+  const { dimensions } = useContext(AppContext);
+
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -117,7 +119,7 @@ export default function Favoris({ navigation }) {
         data={favorites}
         renderItem={renderItem}
         flexGrow={0.1}
-        minHeight={windowHeight - 130}
+        minHeight={dimensions.screen.height - 50}
       />
     </View>
   );

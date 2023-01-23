@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Modal, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { windowWidth } from "../const";
+import { AppContext } from "../contexts/AppContext";
 import { EventsContext } from "../contexts/EventsContext";
 
 export default function EventInfos(props) {
@@ -17,6 +17,9 @@ export default function EventInfos(props) {
     shareEvent,
     redirectToWebsite,
   } = useContext(EventsContext);
+  const { dimensions, screenRatio } = useContext(AppContext);
+
+  console.log("screenRatio", screenRatio);
 
   const convertDate = (date) => {
     if (!date) return "";
@@ -36,10 +39,24 @@ export default function EventInfos(props) {
         >
           <Ionicons name="arrow-back-outline" size={39} />
         </TouchableOpacity>
-        <View style={styles.imageContainer}>
+        <View
+          style={{
+            backgroundColor: "#E1E7EE",
+            width: "50%",
+            height: "50%",
+            borderRadius: "50%",
+            justifyContent: "center",
+            bottom: 20 * screenRatio.height,
+          }}
+        >
           <Image
             source={{ uri: eventInfos.download_url }}
-            style={styles.imageInModal}
+            style={{
+              width: "90%",
+              height: "90%",
+              borderRadius: "50%",
+              alignSelf: "center",
+            }}
           />
         </View>
         {isFavorite(props.item) ? (
@@ -78,7 +95,16 @@ export default function EventInfos(props) {
             {props.item.date_end ? " -" : ""} {convertDate(props.item.date_end)}
             {" de " + props.item.hour_start + " à " + props.item.hour_end}
           </Text>
-          <Text style={styles.description}> {props.item.description}</Text>
+          <Text
+            style={{
+              fontSize: 15,
+              fontFamily: "Questrial",
+              minWidth: dimensions.window.width - 20,
+            }}
+          >
+            {" "}
+            {props.item.description}
+          </Text>
           <Text style={styles.price}>
             {" "}
             Prix: {props.item.price ? props.item.price + "€" : "Gratuit"}
@@ -107,24 +133,11 @@ export default function EventInfos(props) {
   );
 }
 
+//const {ids, stylesDesc} = StyleSheet.create({
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
     left: 20,
-  },
-  imageContainer: {
-    backgroundColor: "#E1E7EE",
-    width: 358,
-    height: 358,
-    borderRadius: 179,
-    justifyContent: "center",
-    bottom: 20,
-  },
-  imageInModal: {
-    width: 310,
-    height: 310,
-    borderRadius: 155,
-    alignSelf: "center",
   },
   iconFavorite: {
     alignSelf: "flex-end",
@@ -172,11 +185,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 20,
     right: 20,
-  },
-  description: {
-    fontSize: 15,
-    fontFamily: "Questrial",
-    maxWidth: windowWidth - 20,
   },
   price: {
     fontSize: 15,

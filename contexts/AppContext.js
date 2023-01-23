@@ -16,8 +16,8 @@ export const AppProvider = ({ children }) => {
     screen: screenDimensions,
   });
   const [screenRatio, setScreenRatio] = useState({
-    width: ratioWidth,
-    height: ratioHeight,
+    width: screenDimensions.width / classicSizePhoneWidth,
+    height: screenDimensions.height / classicSizePhoneHeight,
   });
 
   useEffect(() => {
@@ -25,6 +25,10 @@ export const AppProvider = ({ children }) => {
       "change",
       ({ window, screen }) => {
         setDimensions({ window, screen });
+        setScreenRatio({
+          width: screen.width / classicSizePhoneWidth,
+          height: screen.height / classicSizePhoneHeight,
+        });
       }
     );
     return () => subscription?.remove();
